@@ -10,9 +10,10 @@ namespace ISTUTimeTable.Entitys
     {
         public long id;
         public Subject Subject;
-        public Teacher teacher;
+        public User Teacher;
         public LessonType LessonType;
         public List<Group> Groups;
+        public Location Location;
 
     }
 }

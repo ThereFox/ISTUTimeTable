@@ -9,6 +9,12 @@ namespace ISTUTimeTable.Entitys
     public class TimeTableNode
     {
         public int Id;
-        public List<Lesson> Lessons;
+        public DateOnly Date;
+        public TimeTable TimeTable;
+        public Lesson FirstLesson;
+        public Lesson SecondLesson;
+        public Lesson ThrigthLesson;
+        public Lesson FourthLesson;
+        public Lesson FivethLesson;
     }
 }

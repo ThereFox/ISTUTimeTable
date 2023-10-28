@@ -8,32 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Sasha\\.nuget\\packages\\": {},
-    "F:\\Cinema 4D by REDIX\\NuGetPackages": {}
+    "/home/tf/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\C# learn\\Проекты\\Расписание\\ISTUTimeTable\\ISTUTimeTable.Entitys\\ISTUTimeTable.Entitys.csproj",
+      "projectUniqueName": "/home/tf/Документы/Projects/c#/TimeTable/ISTUTimeTable/ISTUTimeTable.Entitys/ISTUTimeTable.Entitys.csproj",
       "projectName": "ISTUTimeTable.Entitys",
-      "projectPath": "F:\\C# learn\\Проекты\\Расписание\\ISTUTimeTable\\ISTUTimeTable.Entitys\\ISTUTimeTable.Entitys.csproj",
-      "packagesPath": "C:\\Users\\Sasha\\.nuget\\packages\\",
-      "outputPath": "F:\\C# learn\\Проекты\\Расписание\\ISTUTimeTable\\ISTUTimeTable.Entitys\\obj\\",
+      "projectPath": "/home/tf/Документы/Projects/c#/TimeTable/ISTUTimeTable/ISTUTimeTable.Entitys/ISTUTimeTable.Entitys.csproj",
+      "packagesPath": "/home/tf/.nuget/packages/",
+      "outputPath": "/home/tf/Документы/Projects/c#/TimeTable/ISTUTimeTable/ISTUTimeTable.Entitys/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "F:\\Cinema 4D by REDIX\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Sasha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/tf/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -62,12 +54,18 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.22, 6.0.22]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.111/RuntimeIdentifierGraph.json"
       }
     }
   }

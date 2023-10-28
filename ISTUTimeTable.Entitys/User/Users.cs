@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace ISTUTimeTable.Entitys
 {
-    public class Student
+    public class User
     {
         public int id;
+        public Role role;
         public Guid Code;
         public FullName Name;
         public Group group;
