@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.API", "ISTUTimeTable\ISTUTimeTable.API.csproj", "{CBC8C56B-8003-41C8-B5FB-6882DCFA180C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Entitys", "ISTUTimeTable.Entitys\ISTUTimeTable.Entitys.csproj", "{85FF4477-8116-45E1-836D-C0452DD76EF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.API", "ISTUTimeTable.View\ISTUTimeTable.API.csproj", "{7DDE7A6A-0A5B-4620-B63D-1C5D3F4CD578}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Tests", "ISTUTimeTable.Tests\ISTUTimeTable.Tests.csproj", "{4DAF8115-976D-4C8F-913F-3BB820CAAAFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTImeTable.DataAcsesLayer", "ISTUTImeTable.DataAcsesLayer\ISTUTImeTable.DataAcsesLayer.csproj", "{F792ED98-4A24-4E50-B3E0-08DDBCFCFBCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Servises", "ISTUTimeTable.Servises\ISTUTimeTable.Servises.csproj", "{A5AF6CB2-4257-407A-9D25-F2585B8DF108}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.View.GraphQl", "ISTUTimeTable.View.GraphQl\ISTUTimeTable.View.GraphQl.csproj", "{38185656-31EA-4BD5-BD9D-EF471CF0A128}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,30 @@ Global
 		{85FF4477-8116-45E1-836D-C0452DD76EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85FF4477-8116-45E1-836D-C0452DD76EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85FF4477-8116-45E1-836D-C0452DD76EF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02B8CF7E-47BB-419C-8CA5-FE4F43E11E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02B8CF7E-47BB-419C-8CA5-FE4F43E11E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02B8CF7E-47BB-419C-8CA5-FE4F43E11E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02B8CF7E-47BB-419C-8CA5-FE4F43E11E8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DDE7A6A-0A5B-4620-B63D-1C5D3F4CD578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDE7A6A-0A5B-4620-B63D-1C5D3F4CD578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DDE7A6A-0A5B-4620-B63D-1C5D3F4CD578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDE7A6A-0A5B-4620-B63D-1C5D3F4CD578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DAF8115-976D-4C8F-913F-3BB820CAAAFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DAF8115-976D-4C8F-913F-3BB820CAAAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DAF8115-976D-4C8F-913F-3BB820CAAAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DAF8115-976D-4C8F-913F-3BB820CAAAFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F792ED98-4A24-4E50-B3E0-08DDBCFCFBCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F792ED98-4A24-4E50-B3E0-08DDBCFCFBCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F792ED98-4A24-4E50-B3E0-08DDBCFCFBCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F792ED98-4A24-4E50-B3E0-08DDBCFCFBCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5AF6CB2-4257-407A-9D25-F2585B8DF108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5AF6CB2-4257-407A-9D25-F2585B8DF108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5AF6CB2-4257-407A-9D25-F2585B8DF108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5AF6CB2-4257-407A-9D25-F2585B8DF108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38185656-31EA-4BD5-BD9D-EF471CF0A128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38185656-31EA-4BD5-BD9D-EF471CF0A128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38185656-31EA-4BD5-BD9D-EF471CF0A128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38185656-31EA-4BD5-BD9D-EF471CF0A128}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

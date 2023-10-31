@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ISTUTimeTable.Entitys.TimeTable.Comments;
 
-namespace ISTUTimeTable.Entitys.TimeTable
+namespace ISTUTimeTable.Entitys
 {
     public class Comment
     {
