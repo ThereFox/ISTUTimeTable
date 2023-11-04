@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotChocolate;
 
-namespace ISTUTimeTable.View.GraphQl.Entitys;
+namespace ISTUTimeTable.Infrastruction.GraphQl.Entitys;
 
 public class UserInfo
 {
@@ -14,5 +14,4 @@ public class UserInfo
     [GraphQLNonNullType]
     public string Group {get;set;}
     public bool IsStudent {get;set;}
-    public bool IsCorrector{get;set;}
 }

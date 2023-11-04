@@ -11,22 +11,28 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using ISTUTimeTable.Entitys;
+using HotChocolate.Authorization;
 
 namespace ISTUTimeTable.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("auth/")]
     public class AuthorisationController : ControllerBase
     {
         [HttpPost]
-        public void Authorise()
+        [Route("/")]
+        public async Task<IActionResult> Authorise()
         {
-            // if(CanAuthorise() == false)
-            // {
-
-            // }
-            // User userInfo = GetUserInfo();
+            if(await CanAuthorise() == false)
+            {
+                return BadRequest("404");
+            }
+            User userInfo = await GetUserInfo();
         }
+
+        [HttpPost]
+        [Route("/createUser")]
+        public void CreateAccount(){}
 
         private async Task<bool> CanAuthorise()
         {

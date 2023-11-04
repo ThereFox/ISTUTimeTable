@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ISTUTimeTable.View.GraphQl.Entitys;
+using ISTUTimeTable.Infrastruction.GraphQl.Entitys;
 
-namespace ISTUTimeTable.View.GraphQl.Querys;
+namespace ISTUTimeTable.Infrastruction.GraphQl.Querys;
 
 public class AbsencesQuery
 {
-    private 
+    private int test;
 
     public List<Absences> GetAbsences()
     {

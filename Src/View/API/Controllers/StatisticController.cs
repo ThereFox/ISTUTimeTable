@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using ISTUTimeTable.Entitys;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace ISTUTimeTable.View.Controllers;
 
-[Route("statistic")]
+[Route("api/statistic/")]
 public class StatisticController : Controller
 {
     private readonly ILogger<StatisticController> _logger;

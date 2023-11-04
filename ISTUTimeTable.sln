@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Entitys", "ISTUTimeTable.Entitys\ISTUTimeTable.Entitys.csproj", "{85FF4477-8116-45E1-836D-C0452DD76EF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Entitys", "./Src/Core/Domain/Entitys/ISTUTimeTable.Entitys.csproj", "{85FF4477-8116-45E1-836D-C0452DD76EF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.API", "ISTUTimeTable.View\ISTUTimeTable.API.csproj", "{7DDE7A6A-0A5B-4620-B63D-1C5D3F4CD578}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.API", "./Src/View/API/ISTUTimeTable.API.csproj", "{7DDE7A6A-0A5B-4620-B63D-1C5D3F4CD578}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Tests", "ISTUTimeTable.Tests\ISTUTimeTable.Tests.csproj", "{4DAF8115-976D-4C8F-913F-3BB820CAAAFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Tests", "./Tests/IntergationTests/ISTUTimeTable.Tests.csproj", "{4DAF8115-976D-4C8F-913F-3BB820CAAAFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTImeTable.DataAcsesLayer", "ISTUTImeTable.DataAcsesLayer\ISTUTImeTable.DataAcsesLayer.csproj", "{F792ED98-4A24-4E50-B3E0-08DDBCFCFBCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTImeTable.DataAcsesLayer", "./Src/Infrastrictire/Persistence/ISTUTImeTable.DataAcsesLayer/ISTUTImeTable.DataAcsesLayer.csproj", "{F792ED98-4A24-4E50-B3E0-08DDBCFCFBCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Servises", "ISTUTimeTable.Servises\ISTUTimeTable.Servises.csproj", "{A5AF6CB2-4257-407A-9D25-F2585B8DF108}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.View.GraphQl", "ISTUTimeTable.View.GraphQl\ISTUTimeTable.View.GraphQl.csproj", "{38185656-31EA-4BD5-BD9D-EF471CF0A128}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Infrastruction.GraphQl", "./Src/Infrastrictire/Infrastructure/GraphQl/ISTUTimeTable.Infrastruction.GraphQl.csproj", "{38185656-31EA-4BD5-BD9D-EF471CF0A128}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
