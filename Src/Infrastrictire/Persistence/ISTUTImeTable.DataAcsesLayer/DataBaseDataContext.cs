@@ -2,13 +2,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ISTUTImeTable.DataAcsesLayer;
 
-public class UsersDBContext : DbContext
+public class UsersDBContext
 {
     /// <summary>
     /// tetete
     /// </summary>
-    override protected void OnModelCreating()
-    {
+    // override protected void OnModelCreating()
+    // {
         
-    }
+    // }
 }

@@ -11,7 +11,6 @@ namespace ISTUTimeTable.Entitys
     {
         public int id;
         public Role role;
-        public Guid Code;
         public FullName Name;
         public Group group;
     }

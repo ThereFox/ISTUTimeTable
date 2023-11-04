@@ -5,10 +5,7 @@ using System.Threading.Tasks;
 
 namespace ISTUTimeTable.Infrastruction.GraphQl.Mutations;
 
-public class AbsencesMutations
+public class CreateUserMutation
 {
-    public AbsencesMutations()
-    {
-        
-    }
+    
 }

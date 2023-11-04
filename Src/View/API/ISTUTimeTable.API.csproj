@@ -1,8 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
-    <ProjectReference Include="..\ISTUTimeTable.Entitys\ISTUTimeTable.Entitys.csproj" />
-    <ProjectReference Include="..\ISTUTimeTable.View.GraphQl\ISTUTimeTable.View.GraphQl.csproj" />
+    <ProjectReference Include="..\..\Core\Domain\Entitys\ISTUTimeTable.Entitys.csproj" />
+    <ProjectReference Include="..\..\Infrastrictire\Infrastructure\GraphQl\ISTUTimeTable.Infrastruction.GraphQl.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HotChocolate" Version="13.7.0" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotChocolate;
 
-namespace ISTUTimeTable.View.GraphQl.Entitys;
+namespace ISTUTimeTable.Infrastruction.GraphQl.Entitys;
 
 public class Absence
 {

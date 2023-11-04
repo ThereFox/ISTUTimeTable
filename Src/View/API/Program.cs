@@ -1,29 +1,35 @@
 using HotChocolate;
 using Microsoft.Extensions.Options;
-using ISTUTimeTable.View.GraphQl.Querys;
-using ISTUTimeTable.View.GraphQl.Mutations;
+using ISTUTimeTable.Infrastruction.GraphQl.Querys;
+using ISTUTimeTable.Infrastruction.GraphQl.Mutations;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace ISTUTimeTable.View.Api;
 
-// Add services to the container.
+public class Program
+{
 
-builder.Services.AddGraphQL(
-    SchemaBuilder.New()
-    .AddQueryType<AbsencesQuery>()
-    .AddMutationType<AbsencesMutations>().Create().Print()
-);
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+        builder.Services.AddGraphQL(
+            SchemaBuilder.New()
+            .AddQueryType<AbsencesQuery>()
+            .AddMutationType<AbsencesMutations>().Create().Print()
+        );
 
-var app = builder.Build();
+        builder.Services.AddControllers();
 
-// Configure the HTTP request pipeline.
+        var app = builder.Build();
 
+        app.UseHttpsRedirection();
 
-app.UseHttpsRedirection();
+        app.UseAuthorization();
 
-app.UseAuthorization();
+        app.MapControllers();
 
-app.MapControllers();
+        app.Run();
 
-app.Run();
+        }
+
+}
