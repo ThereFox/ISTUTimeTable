@@ -2,6 +2,8 @@
 type TimeTableOnWeek
 {
     StartDay: Date
+    EndDay: Date
+
     Group: Group
 
     Monday: TimeTableOnDay
@@ -14,6 +16,7 @@ type TimeTableOnWeek
 type TimeTableOnDay
 {
     Group: Group
+
     FirstLesson: Lesson
     SecondLesson: Lesson
     ThidthLesson: Lesson
@@ -50,6 +53,8 @@ type Group
     Name: string
     Course: int
     Speciality: string
+
+    Students: [Student]!
 }
 type FullName
 {
@@ -59,12 +64,16 @@ type FullName
 }
 type Lesson
 {
-    Date: Date
-    Subject: string
-    Teacher: Teacher
-    LessonType: LessonType
-    Location: Location
+    Id: ID
+
+    Date: Date!
+    Subject: string!
+    Teacher: Teacher!
+    LessonType: LessonType!
+    Location: Location!
     Comments: [Comment]!
+
+    Unpassings: [Unpassing]!
 }
 type Comment
 {

@@ -1,6 +1,12 @@
 type Query
 {
     Users
-    TimeTableOnWeek
+    Groups
+
+    TimeTableOnWeek(StartDay: Date Group: Group)
+    TimeTableOnWeek(EndDay: Date Group: Group)
+    TimeTableOnWeek(id: ID Group: Group)
     
+    TimeTableOnDay(Day: Date Group: Group)
+
 }
