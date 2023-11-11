@@ -12,7 +12,10 @@ public class AbsencesQuery
 
     public List<Absences> GetAbsences()
     {
-        return new List<Absences>(
-        );
+        Console.WriteLine("tetetetet");
+
+        return new List<Absences>(){
+            new Absences(){ Date = DateOnly.MaxValue }
+        };
     }
 }

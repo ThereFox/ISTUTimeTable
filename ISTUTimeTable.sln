@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.API", "./Src/
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Tests", "./Tests/IntergationTests/ISTUTimeTable.Tests.csproj", "{4DAF8115-976D-4C8F-913F-3BB820CAAAFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTImeTable.DataAcsesLayer", "./Src/Infrastrictire/Persistence/ISTUTImeTable.DataAcsesLayer/ISTUTImeTable.DataAcsesLayer.csproj", "{F792ED98-4A24-4E50-B3E0-08DDBCFCFBCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTImeTable.DataAcsesLayer", "./Src/Infrastrictire/Persistence/DataAcsesLayer/ISTUTImeTable.DataAcsesLayer.csproj", "{F792ED98-4A24-4E50-B3E0-08DDBCFCFBCB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Infrastruction.GraphQl", "./Src/Infrastrictire/Infrastructure/GraphQl/ISTUTimeTable.Infrastruction.GraphQl.csproj", "{38185656-31EA-4BD5-BD9D-EF471CF0A128}"
 EndProject

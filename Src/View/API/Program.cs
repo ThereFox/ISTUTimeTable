@@ -2,6 +2,7 @@ using HotChocolate;
 using Microsoft.Extensions.Options;
 using ISTUTimeTable.Infrastruction.GraphQl.Querys;
 using ISTUTimeTable.Infrastruction.GraphQl.Mutations;
+using ISTUTimeTable.Infrastruction.GraphQl.Entitys;
 
 namespace ISTUTimeTable.View.Api;
 
@@ -12,15 +13,19 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddGraphQL(
+        builder.Services.AddGraphQLServer(
             SchemaBuilder.New()
+            .AddErrorInterfaceType<AbsencesQuery>()
             .AddQueryType<AbsencesQuery>()
             .AddMutationType<AbsencesMutations>().Create().Print()
         );
 
         builder.Services.AddControllers();
 
+
         var app = builder.Build();
+
+        app.MapGraphQL("/api/mainData");
 
         app.UseHttpsRedirection();
 
