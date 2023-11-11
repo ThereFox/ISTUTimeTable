@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ISTUTimeTable.Infrastruction.GraphQl.Mutations;
+namespace DataAcsesLayer.Configuration;
 
-public class RegistrationMutation
+public class CommentsConfigurations
 {
     
 }

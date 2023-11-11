@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entitys.Unpassings;
 
 namespace ISTUTimeTable.Entitys
 {
@@ -14,6 +15,7 @@ namespace ISTUTimeTable.Entitys
         public LessonType LessonType;
         public List<Group> Groups;
         public Location Location;
+        public List<Unpassing> Unpassings {get; set;}
 
     }
 }

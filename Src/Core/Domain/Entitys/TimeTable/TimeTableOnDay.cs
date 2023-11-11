@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ISTUTimeTable.Entitys
 {
-    public class TimeTableNode
+    public class TimeTableOnDay
     {
         public int Id;
         public DateOnly Date;
-        public TimeTable TimeTable;
+        public TimeTableOnWeek TimeTable;
         public Lesson FirstLesson;
         public Lesson SecondLesson;
         public Lesson ThrigthLesson;
