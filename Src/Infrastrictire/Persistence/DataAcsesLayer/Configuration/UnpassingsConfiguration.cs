@@ -28,12 +28,14 @@ public class UnpassingsConfiguration : IEntityTypeConfiguration<Unpassing>
         builder
         .HasOne<User>(ex => ex.Student)
         .WithMany(ex => ex.Unpassings)
-        .HasForeignKey(ex => ex.Id);
+        .HasForeignKey(ex => ex.StudentId)
+        .HasPrincipalKey(ex => ex.Id);
 
         builder
         .HasOne<Lesson>(ex => ex.lesson)
         .WithMany(ex => ex.Unpassings)
-        .HasForeignKey(ex => ex.Id);
+        .HasForeignKey(ex => ex.LessonId)
+        .HasPrincipalKey(ex => ex.id);
 
         builder
         .Property(ex => ex.Reason.Reason)

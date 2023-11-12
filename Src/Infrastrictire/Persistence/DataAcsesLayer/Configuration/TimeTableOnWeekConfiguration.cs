@@ -13,36 +13,43 @@ public class TimeTableOnWeekConfiguration : IEntityTypeConfiguration<TimeTableOn
     public void Configure(EntityTypeBuilder<TimeTableOnWeek> builder)
     {
         builder.ToTable("TimeTablesOnWeek");
+
         builder.HasKey(ex => ex.id);
 
         builder
-        .OwnsOne(ex => ex.Monday)
-        .HasOne(ex => ex.TimeTable);
+        .HasOne(ex => ex.Monday)
+        .WithOne(ex => ex.TimeTable)
+        .HasForeignKey<TimeTableOnWeek>(ex => ex.MondayTimeTableId)
+        .HasPrincipalKey<TimeTableOnDay>(ex => ex.Id);
 
         builder
-        .OwnsOne(ex => ex.Tuesday)
-        .HasOne(ex => ex.TimeTable);
-
-            builder
-        .OwnsOne(ex => ex.Wensday)
-        .HasOne(ex => ex.TimeTable);
+        .HasOne(ex => ex.Tuesday)
+        .WithOne(ex => ex.TimeTable)
+        .HasForeignKey<TimeTableOnWeek>(ex => ex.TuesdayTimeTableId)
+        .HasPrincipalKey<TimeTableOnDay>(ex => ex.Id);
 
         builder
-        .OwnsOne(ex => ex.Thusday)
-        .HasOne(ex => ex.TimeTable);
+        .HasOne(ex => ex.Wensday)
+        .WithOne(ex => ex.TimeTable)
+        .HasForeignKey<TimeTableOnWeek>(ex => ex.WensdayTimeTableId)
+        .HasPrincipalKey<TimeTableOnDay>(ex => ex.Id);
 
         builder
-        .OwnsOne(ex => ex.Friday)
-        .HasOne(ex => ex.TimeTable);
+        .HasOne(ex => ex.Thusday)
+        .WithOne(ex => ex.TimeTable)
+        .HasForeignKey<TimeTableOnWeek>(ex => ex.ThusdayTimeTableId)
+        .HasPrincipalKey<TimeTableOnDay>(ex => ex.Id);
 
-        // builder
-        // .OwnsOne(ex => ex.)
-        // .HasOne(ex => ex.TimeTable);
-
+        builder
+        .HasOne(ex => ex.Friday)
+        .WithOne(ex => ex.TimeTable)
+        .HasForeignKey<TimeTableOnWeek>(ex => ex.WensdayTimeTableId)
+        .HasPrincipalKey<TimeTableOnDay>(ex => ex.Id);
+        
         builder
         .HasOne(ex => ex.Group)
-        .WithMany(ex => ex);
-
-        builder.Property(e => e.Group).HasColumnName("");
+        .WithMany(ex => ex.TimeTablesOnWeeks)
+        .HasForeignKey(ex => ex.GroupId)
+        .HasPrincipalKey(ex => ex.Id);
     }
 }

@@ -11,5 +11,7 @@ namespace ISTUTimeTable.Entitys
         public int CampusNumber;
         public int FloorNumber;
         public int ClassRoomNumber;
+
+        public List<Lesson> Lessons { get; set; }
     }
 }
