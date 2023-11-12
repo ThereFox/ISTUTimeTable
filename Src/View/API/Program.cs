@@ -13,12 +13,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddGraphQLServer(
-            SchemaBuilder.New()
-            .AddErrorInterfaceType<AbsencesQuery>()
-            .AddQueryType<AbsencesQuery>()
-            .AddMutationType<AbsencesMutations>().Create().Print()
-        );
+
 
         builder.Services.AddControllers();
 

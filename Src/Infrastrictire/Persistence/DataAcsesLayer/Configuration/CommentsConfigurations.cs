@@ -22,6 +22,22 @@ public class CommentsConfigurations : IEntityTypeConfiguration<Comment>
         .HasForeignKey(ex => ex.WriterId)
         .HasPrincipalKey(ex => ex.Id);
 
+        builder
+        .HasOne(ex => ex.ForLesson)
+        .WithMany(ex => ex.Comments)
+        .HasForeignKey(ex => ex.LessonId)
+        .HasPrincipalKey(ex => ex.id);
+
+        builder
+        .Property(ex => ex.Date)
+        .HasColumnType("date")
+        .HasColumnName("Date");
+
+        builder.Property(ex => ex.Message).HasColumnName("Text");
+        builder.Property(ex => ex.commentType).HasColumnName("Type");
+        
+
+
 
     }
 }
