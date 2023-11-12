@@ -11,5 +11,7 @@ namespace ISTUTimeTable.Entitys
         public int Id;
         public string Name;
 
+        public List<Lesson> Lessons;
+
     }
 }

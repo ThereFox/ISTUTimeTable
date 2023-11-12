@@ -9,8 +9,14 @@ namespace ISTUTimeTable.Entitys
     {
         public int Id;
         public DateOnly Date;
+
+        public int WriterId {get;set;}
         public User Writer;
+
+        public int LessonId {get;set;}
         public Lesson ForLesson;
+
+        public int GroupId {get;set;}
         public Group ForGroup;
         public string Message;
         public CommentType commentType;

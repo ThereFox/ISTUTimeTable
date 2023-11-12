@@ -39,7 +39,8 @@ public class UsersConfiguration : IEntityTypeConfiguration<User>
         builder
         .HasOne<Group>((ex) => ex.group)
         .WithMany(ex => ex.Students)
-        .HasForeignKey(ex => ex.Id)
+        .HasForeignKey(ex => ex.GroupId)
+        .HasPrincipalKey(ex => ex.Id)
         .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
