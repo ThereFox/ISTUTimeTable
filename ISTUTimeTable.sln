@@ -3,15 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Entitys", "./Src/Core/Domain/Entitys/ISTUTimeTable.Entitys.csproj", "{85FF4477-8116-45E1-836D-C0452DD76EF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Entitys", ".\Src\Core\Domain\Entitys\ISTUTimeTable.Entitys.csproj", "{85FF4477-8116-45E1-836D-C0452DD76EF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.API", "./Src/View/API/ISTUTimeTable.API.csproj", "{7DDE7A6A-0A5B-4620-B63D-1C5D3F4CD578}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.API", ".\Src\View\API\ISTUTimeTable.API.csproj", "{7DDE7A6A-0A5B-4620-B63D-1C5D3F4CD578}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Tests", "./Tests/IntergationTests/ISTUTimeTable.Tests.csproj", "{4DAF8115-976D-4C8F-913F-3BB820CAAAFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Tests", ".\Tests\IntergationTests\ISTUTimeTable.Tests.csproj", "{4DAF8115-976D-4C8F-913F-3BB820CAAAFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTImeTable.DataAcsesLayer", "./Src/Infrastrictire/Persistence/DataAcsesLayer/ISTUTImeTable.DataAcsesLayer.csproj", "{F792ED98-4A24-4E50-B3E0-08DDBCFCFBCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTImeTable.DataAcsesLayer", ".\Src\Infrastrictire\Persistence\DataAcsesLayer\ISTUTImeTable.DataAcsesLayer.csproj", "{F792ED98-4A24-4E50-B3E0-08DDBCFCFBCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Infrastruction.GraphQl", "./Src/Infrastrictire/Infrastructure/GraphQl/ISTUTimeTable.Infrastruction.GraphQl.csproj", "{38185656-31EA-4BD5-BD9D-EF471CF0A128}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTUTimeTable.Infrastruction.GraphQl", ".\Src\Infrastrictire\Infrastructure\GraphQl\ISTUTimeTable.Infrastruction.GraphQl.csproj", "{38185656-31EA-4BD5-BD9D-EF471CF0A128}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{1FF7DF85-C548-4F4B-BC28-166A713E3C05}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{06F759AB-C7EA-4E3B-90F3-74FBEBF034F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{510223F2-CD91-492F-A249-C165223807A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "Src\Core\App\App\App.csproj", "{AC3E1C57-C165-4C43-9FD1-EDAE95668B0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,11 +59,20 @@ Global
 		{38185656-31EA-4BD5-BD9D-EF471CF0A128}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38185656-31EA-4BD5-BD9D-EF471CF0A128}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38185656-31EA-4BD5-BD9D-EF471CF0A128}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC3E1C57-C165-4C43-9FD1-EDAE95668B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC3E1C57-C165-4C43-9FD1-EDAE95668B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC3E1C57-C165-4C43-9FD1-EDAE95668B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC3E1C57-C165-4C43-9FD1-EDAE95668B0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FD5F90C0-DDCF-4684-9D2A-5022F9DE7DA6}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{06F759AB-C7EA-4E3B-90F3-74FBEBF034F2} = {1FF7DF85-C548-4F4B-BC28-166A713E3C05}
+		{510223F2-CD91-492F-A249-C165223807A1} = {06F759AB-C7EA-4E3B-90F3-74FBEBF034F2}
+		{AC3E1C57-C165-4C43-9FD1-EDAE95668B0C} = {510223F2-CD91-492F-A249-C165223807A1}
 	EndGlobalSection
 EndGlobal

@@ -109,3 +109,9 @@ type UnpassingReason
     IsRelatiableReason: Boolean
     needAprouvingDocument: Boolean
 }
+
+
+type ActionResponse
+{
+    Response: string
+}

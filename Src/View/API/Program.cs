@@ -13,6 +13,9 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        // builder.Services.AddGraphQLServer(
+        //     SchemaBuilder.New().AddQueryType<
+        //     );
 
 
         builder.Services.AddControllers();
