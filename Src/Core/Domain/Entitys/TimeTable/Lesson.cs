@@ -26,5 +26,8 @@ namespace ISTUTimeTable.Entitys
         public Location Location;
         public List<Unpassing> Unpassings {get; set;}
 
+        
+        public List<Comment> Comments {get; set;}
+
     }
 }

@@ -16,8 +16,6 @@ namespace ISTUTimeTable.Entitys
         public int LessonId {get;set;}
         public Lesson ForLesson;
 
-        public int GroupId {get;set;}
-        public Group ForGroup;
         public string Message;
         public CommentType commentType;
     }
