@@ -1,8 +1,8 @@
 using HotChocolate;
 using Microsoft.Extensions.Options;
 using ISTUTimeTable.Infrastruction.GraphQl.Querys;
-using ISTUTimeTable.Infrastruction.GraphQl.Mutations;
 using ISTUTimeTable.Infrastruction.GraphQl.Entitys;
+using GraphQl;
 
 namespace ISTUTimeTable.View.Api;
 
@@ -13,15 +13,16 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // builder.Services.AddGraphQLServer(
-        //     SchemaBuilder.New().AddQueryType<
-        //     );
+        builder.Services.AddGraphQLInfrastruction();
+
 
 
         builder.Services.AddControllers();
 
 
         var app = builder.Build();
+
+        app.UseWebSockets();
 
         app.MapGraphQL("/api/mainData");
 
