@@ -1,0 +1,19 @@
+//specification https://en.wikipedia.org/wiki/JSON_Web_Token#Standard_fields
+
+Header: //const
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+Payload:
+{
+    //token data
+    "iss" : "..."
+    "iat" : ... //NumericDate
+    "exp" : ... //NumericDate
+
+    //user data
+    "id" : ...
+    "role": "..."
+}
+Signature

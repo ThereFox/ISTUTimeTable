@@ -11,6 +11,7 @@ namespace Src.Core.App.Interfaces
     {
         public Task<List<Unpassing>> GetAllByDay(DateOnly day); 
         public Task<List<Unpassing>> GetAllByDayAndGroup(Group group, DateOnly day);
+        public Task<List<Unpassing>> GetAllUnpassingByUser(User user);
         public Task Add();
         public Task Remove();
     }

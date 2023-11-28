@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\Entitys\ISTUTimeTable.Entitys.csproj" />
+    <ProjectReference Include="..\..\Common\ISTUTImeTable.Common\ISTUTImeTable.Common.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
