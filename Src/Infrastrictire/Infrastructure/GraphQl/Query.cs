@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Authorise.JWT;
 using GraphQl.Authorise.Attributes;
 using ISTUTimeTable.Entitys;
 using ISTUTimeTable.Infrastruction.GraphQl.Entitys;
@@ -52,4 +53,10 @@ public class Query
 
     }
 
+    [GraphQLName("GenerateToken")]
+    [GraphQLDescription("Generate auth token")]
+    public async Task<JWTBearer> Auth()
+    {
+
+    }
 }
