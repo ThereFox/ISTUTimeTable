@@ -62,7 +62,7 @@ public class CustomJWTAuthHandler : AuthenticationHandler<CustomJWTAuthSchemeOpt
 
         if(userInfoResult.IsSucsesfull)
         {
-            return await auntificateByUserInfo(userInfoResult.ResultValue);
+            return auntificateByUserInfo(userInfoResult.ResultValue);
         }
         else
         {
