@@ -9,14 +9,13 @@ namespace Authorise;
 public class RefreshableAuthoriseTokenChecker : IAuthorisationTokenChecker
 {
     private readonly JWTTokenSource _tokenSource;
-
     private readonly IRefreshTokenRepository _refreshTokens;
 
     public async Task<Result<AuthBearer>> GenerateToken(TokenInfo info)
     {
         var token = _tokenSource.Generate(info);
 
-        var saveTokenResult = await _refreshTokens.AddRefreshToken(info.userInfo, token);
+        var saveTokenResult = await _refreshTokens.AddRefreshToken(info.UserInfo, token);
 
         if(saveTokenResult.IsSucsesfull == false)
         {
@@ -52,22 +51,29 @@ public class RefreshableAuthoriseTokenChecker : IAuthorisationTokenChecker
             Result.Failure<AuthBearer>(ContainRefreshTokenResult.ErrorInfo);
         }
 
-        var tokenInfo = await _refreshTokens.GetTokenOwnerInfo(RefreshToken);
+        var tokenInfo = await _refreshTokens.GetUserInfoByRefreshToken(RefreshToken);
 
         if(tokenInfo.IsSucsesfull == false)
         {
             return Result.Failure<AuthBearer>(tokenInfo.ErrorInfo);
         }
 
-        var generatedToken = _tokenSource.Generate(tokenInfo.ResultValue);
+        var generatedToken = _tokenSource.Generate(
+            new TokenInfo(tokenInfo.ResultValue, 10, 30)
+        );
 
-        await _refreshTokens.RefreshToken(RefreshToken, generatedToken.RefreshToken);
+        var updateTokenResult = await _refreshTokens.UpdateUserCurrentRefreshToken(RefreshToken, generatedToken.RefreshToken);
         
+        if(updateTokenResult.IsSucsesfull == false)
+        {
+            return Result.Failure<AuthBearer>(updateTokenResult.ErrorInfo);
+        }
+
         return Result.Sucsesfull<AuthBearer>(generatedToken);
     }
 
     private bool TokenIsExplained(JWTToken<AuthPayload> token)
     {
-        return true;
+        return (DateTime)token.Payload.Explanetion > DateTime.Now;
     }
 }

@@ -8,9 +8,16 @@ namespace App.token;
 
 public class TokenInfo
 {
-    public TokenUserInfo userInfo {get; init;}
+    public TokenUserInfo UserInfo {get; init;}
 
     public int MinutsOfLife {get; set;}
     public int MinutsForRefresh {get; set;}
+
+    public TokenInfo(TokenUserInfo userInfo, int minutsOfLife, int minutsForRefresh) 
+    {
+        UserInfo = userInfo;
+        MinutsOfLife = minutsOfLife;
+        MinutsForRefresh = minutsForRefresh;
+    }
 
 }

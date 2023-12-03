@@ -12,5 +12,6 @@ public interface IRefreshTokenRepository
 {
     public Task<Result> AddRefreshToken(TokenUserInfo user,  AuthBearer bearer);
     public Task<Result> ContainRefreshToken(string refreshBearer);
+    public Task<Result<TokenUserInfo>> GetUserInfoByRefreshToken(string refreshToken);
     public Task<Result> UpdateUserCurrentRefreshToken(string oldToken, string newToken);
 }
