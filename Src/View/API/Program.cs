@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using ISTUTimeTable.Infrastruction.GraphQl.Querys;
 using ISTUTimeTable.Infrastruction.GraphQl.Entitys;
 using GraphQl;
+using Authorise;
 
 namespace ISTUTimeTable.View.Api;
 
@@ -13,8 +14,9 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddGraphQLInfrastruction();
+        builder.Services.AddCustomJWTAuthService();
 
+        builder.Services.AddGraphQLInfrastruction();
 
 
         builder.Services.AddControllers();

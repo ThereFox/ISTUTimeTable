@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\Domain\Entitys\ISTUTimeTable.Entitys.csproj" />
     <ProjectReference Include="..\..\..\Core\App\App\App.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Authorise\Authorise.csproj" />
   </ItemGroup>
 
 

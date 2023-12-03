@@ -33,7 +33,7 @@ public class Mutation
     [GraphQLName("DropGroup")]
     [GraphQLDescription("Delete group (avaliable for admin)")]
     [Error(typeof(GroupDontHaveExistExcepiton))]
-    public async Task DeleteGroup()
+    public async Task DeleteGroup([ID] int id)
     {
 
     }
@@ -108,7 +108,7 @@ public class Mutation
     [GraphQLName("ChangeGroup")]
     [GraphQLDescription("Change group of user (avaliable for admin and currector)")]
     [Error(typeof(DontHaveUserException))]
-    public async Task ChangeUserGroup()
+    public async Task ChangeUserGroup([ID] int userID, [ID] int newUserGroup)
     {
 
     }

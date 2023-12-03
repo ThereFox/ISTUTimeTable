@@ -16,7 +16,7 @@ public class RefreshableAuthoriseTokenChecker : IAuthorisationTokenChecker
     {
         var token = _tokenSource.Generate(info);
 
-        var saveTokenResult = await _refreshTokens.AddRefreshToken(token);
+        var saveTokenResult = await _refreshTokens.AddRefreshToken(info.userInfo, token);
 
         if(saveTokenResult.IsSucsesfull == false)
         {
