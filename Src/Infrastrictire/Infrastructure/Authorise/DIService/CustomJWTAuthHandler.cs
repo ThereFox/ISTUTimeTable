@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace Authorise;
 
@@ -107,14 +108,19 @@ public class CustomJWTAuthHandler : AuthenticationHandler<CustomJWTAuthSchemeOpt
 
         return Result.Sucsesfull<string>(token.Value);
     }
-    private Task<AuthenticateResult> auntificateByUserInfo(TokenUserInfo userInfo)
+    private AuthenticateResult auntificateByUserInfo(TokenUserInfo userInfo)
     {
+        var userIdClaim = new Claim(ClaimTypes.NameIdentifier, userInfo.UserId.ToString());
+        var userRoleClaim = new Claim(ClaimTypes.Role, userInfo.UserRole.ToString());
 
-                return AuthenticateResult.Success(
-            new AuthenticationTicket(
-                new System.Security.Claims.ClaimsPrincipal(new )
-                this.Scheme.Name
-            )
+        var claimIdentity = new ClaimsIdentity(new List<Claim> { userIdClaim, userRoleClaim});
+        var claimPrincipal = new ClaimsPrincipal(claimIdentity);
+
+            return AuthenticateResult.Success(
+                new AuthenticationTicket(
+                    claimPrincipal,
+                    this.Scheme.Name
+                )
             );
     }
 
