@@ -76,6 +76,9 @@ public class JWTToken<PayloadType> where PayloadType : PayloadBase
         return alghoritm == "HS256";
     }
 
-    private static string GenerateCheckCode()
+    private static string generateCheckCode(string authParts, string payloadParts)
+    {
+
+    }
 
 }
