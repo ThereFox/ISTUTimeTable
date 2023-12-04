@@ -36,6 +36,7 @@ public class JWTToken<PayloadType> where PayloadType : PayloadBase
             return Result.Failure<JWTToken<PayloadType>>(new Error("3", "TokenInfoWosChange"));
         }
 
+        var content = JsonConvert.DeserializeObject<JWTToken<PayloadType>>(parts[1]);
 
 
 
@@ -61,10 +62,9 @@ public class JWTToken<PayloadType> where PayloadType : PayloadBase
         }
 
         var CheckCodeFromToken = parts[2];
-        var GeneratedCheckCode = ;
+        var GeneratedCheckCode = 12;
 
-
-
+        
     }
 
     private static bool IsJWTToken(string type)
@@ -75,5 +75,7 @@ public class JWTToken<PayloadType> where PayloadType : PayloadBase
     {
         return alghoritm == "HS256";
     }
+
+    private static string GenerateCheckCode()
 
 }

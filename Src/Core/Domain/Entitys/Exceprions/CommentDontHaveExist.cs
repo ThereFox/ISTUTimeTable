@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Entitys.Exceprions;
+namespace Entitys.Exceptions;
 
-public class CommentDontHaveExist : Exceprions
+public class CommentDontHaveExist : Exception
 {
     
 }
