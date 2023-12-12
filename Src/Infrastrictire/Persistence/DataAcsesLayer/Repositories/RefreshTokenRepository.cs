@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using App.token;
 using Authorise.JWT;
+using ISTUTimeTable.Entitys;
 using ISTUTImeTable.Common;
 using ISTUTImeTable.DataAcsesLayer;
 
@@ -33,7 +34,7 @@ public class RefreshTokenRepository : IRefreshTokenRepository
         return Result.Sucsesfull();
     }
 
-    public async Task<Result> UpdateUserCurrentRefreshToken(string oldToken, string newToken)
+    public async Task<Result> UpdateUserCurrentRefreshToken(User user, string oldToken, string newToken)
     {
         throw new NotImplementedException();
     }

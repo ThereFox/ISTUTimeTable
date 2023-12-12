@@ -27,7 +27,7 @@ public class RefreshableAuthoriseTokenChecker : IAuthorisationTokenChecker
 
     public Result<TokenUserInfo> GetUserInfoFromToken(string authToken)
     {
-        var tokenParseResult = JWTToken<AuthPayload>.ReadFromString(authToken);
+        var tokenParseResult = _tokenSource.ReadFromString<AuthPayload>(authToken);
 
         if(tokenParseResult.IsSucsesfull == false)
         {
@@ -39,7 +39,7 @@ public class RefreshableAuthoriseTokenChecker : IAuthorisationTokenChecker
         {
             return Result.Failure<TokenUserInfo>(new Error("4", "TokenExplained"));
         }
-        return Result.Sucsesfull<TokenUserInfo>(new TokenUserInfo(tokenInfo.Payload.UserId, (Role)tokenInfo.Payload.UserRoleId));
+        return Result.Sucsesfull<TokenUserInfo>(new TokenUserInfo(tokenInfo.UserId, (Role)tokenInfo.UserRoleId));
     }
 
     public async Task<Result<AuthBearer>> RefreshToken(string RefreshToken)
@@ -72,8 +72,8 @@ public class RefreshableAuthoriseTokenChecker : IAuthorisationTokenChecker
         return Result.Sucsesfull<AuthBearer>(generatedToken);
     }
 
-    private bool TokenIsExplained(JWTToken<AuthPayload> token)
+    private bool TokenIsExplained(AuthPayload token)
     {
-        return (DateTime)token.Payload.Explanetion > DateTime.Now;
+        return (DateTime)token.Explanetion > DateTime.Now;
     }
 }

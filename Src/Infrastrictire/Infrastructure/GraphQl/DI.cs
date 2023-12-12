@@ -21,6 +21,7 @@ public static class DI
                 .Create()
                 .ToString()
             )
+            .AddAuthorizationCore()
             .AddInMemorySubscriptions()
             .AddDefaultTransactionScopeHandler();
 

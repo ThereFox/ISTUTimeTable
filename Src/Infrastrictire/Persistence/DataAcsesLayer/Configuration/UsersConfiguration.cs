@@ -18,8 +18,7 @@ public class UsersConfiguration : IEntityTypeConfiguration<User>
         .ToTable("Users");
 
         builder
-        .HasKey(ex => ex.Id)
-        .HasColumnName("Id");
+        .HasKey(ex => ex.Id);
 
         builder
         .Property(ex => ex.Name.FirstName)

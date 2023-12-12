@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Entitys.Unpassings;
@@ -18,20 +19,46 @@ public class UnpassingRepository : IUnpassingRepository
         _databaseContext.Unpassings.Add(unpassing);
         await _databaseContext.SaveChangesAsync();
     }
-
     public async Task<List<Unpassing>> GetAllByDay(DateOnly day)
     {
-        throw new NotImplementedException();
-    }
+        var query = _databaseContext
+        .Unpassings
+        .Where(ex => ex.Day.Date == day); 
 
-    public async Task<List<Unpassing>> GetAllByDay(Group group, DateOnly day)
+        var result = await query.ToListAsync();
+
+        return result;
+    }
+    public async Task<List<Unpassing>> GetAllByDayAndGroup(Group group, DateOnly day)
     {
-        throw new NotImplementedException();
-    }
+        var query = _databaseContext
+        .Unpassings
+        .Where(ex => ex.Day.Date == day && ex.Student.group == group); 
 
+        var result = await query.ToListAsync();
+
+        return result;
+    }
+    public async Task<List<Unpassing>> GetAllUnpassingByUser(User user)
+    {
+        var query = _databaseContext
+        .Unpassings
+        .Where(ex => ex.StudentId == user.Id); 
+
+        var result = await query.ToListAsync();
+
+        return result;
+    }
     public async Task Remove(int unpassingId)
     {
-        _databaseContext.Remove(_databaseContext.Unpassings.Where(ex => ex.Id == unpassingId).First());
+        _databaseContext
+        .Remove(
+            _databaseContext
+            .Unpassings
+            .Where(ex => ex.Id == unpassingId)
+            .First()
+        );
         await _databaseContext.SaveChangesAsync();
     }
+
 }

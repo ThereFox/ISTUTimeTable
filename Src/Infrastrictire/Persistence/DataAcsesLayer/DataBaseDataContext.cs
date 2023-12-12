@@ -1,13 +1,12 @@
 using System.Reflection;
 using Authorise.JWT;
-using DataAcsesLayer.Common.Interfaces;
 using Entitys.Unpassings;
 using ISTUTimeTable.Entitys;
 using Microsoft.EntityFrameworkCore;
 
 namespace ISTUTImeTable.DataAcsesLayer;
 
-internal class UsersDBContext : DbContext, ILowLevelDBData
+internal class UsersDBContext : DbContext
 {
     public DbSet<TimeTableOnWeek> WeeksTimeTables { get; set; }
     public DbSet<User> Users { get; set; }
