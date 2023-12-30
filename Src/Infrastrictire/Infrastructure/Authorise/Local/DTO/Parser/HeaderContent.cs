@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -8,14 +9,17 @@ namespace Authorise.JWT.DTO;
 
 public class HeaderContent
 {
-    [JsonPropertyName("typ")]
-    public string Type { get; init; }
     [JsonPropertyName("alg")]
-    public string Algorithm { get; init; }
+    [JsonInclude]
+    public string Algorithm { get; set; }
+    [JsonPropertyName("typ")]
+    [JsonInclude]
+    public string Type { get; set; }
 
-    public HeaderContent(string type, string algorithm) 
+    [JsonConstructor]
+    public HeaderContent(string alg, string typ) 
     {
-        Type = type;
-        Algorithm = algorithm;
+        Algorithm = alg;
+        Type = typ;
     }
 }

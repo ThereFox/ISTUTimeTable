@@ -12,11 +12,11 @@ public class Result
 
     public Result(bool isSucsesfull, Error error)
     {
-        if(isSucsesfull && error != Error.None)
+        if(isSucsesfull && error.Code != Error.None.Code)
         {
             throw new InvalidOperationException();
         }
-        if(!isSucsesfull && error == Error.None)
+        if(!isSucsesfull && error.Code == Error.None.Code)
         {
             throw new InvalidOperationException();
         }

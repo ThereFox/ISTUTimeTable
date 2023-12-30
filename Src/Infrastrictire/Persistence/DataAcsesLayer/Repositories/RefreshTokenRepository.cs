@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using App.token;
+using Auth.Common;
 using Authorise.JWT;
 using ISTUTimeTable.Entitys;
 using ISTUTImeTable.Common;
@@ -16,7 +18,8 @@ public class RefreshTokenRepository : IRefreshTokenRepository
 
     public async Task<Result> AddRefreshToken(TokenUserInfo user, AuthBearer bearer)
     {
-        _databaseContext.Bearers.AddAsync(new RefreshableBearerRecord())
+        throw new NotImplementedException();
+        //_databaseContext.Bearers.AddAsync(new RefreshableBearerRecord());
     }
 
     public async Task<Result> ContainRefreshToken(string refreshBearer)
@@ -34,10 +37,35 @@ public class RefreshTokenRepository : IRefreshTokenRepository
         return Result.Sucsesfull();
     }
 
-    public async Task<Result> UpdateUserCurrentRefreshToken(User user, string oldToken, string newToken)
+    public Task<Result<TokenUserInfo>> GetUserInfoByRefreshToken(string refreshToken)
     {
         throw new NotImplementedException();
     }
+
+    public Task<Result> UpdateUserCurrentRefreshToken(string oldToken, string newToken)
+    {
+        throw new NotImplementedException();
+    }
+
+    // public async Task<Result> UpdateUserCurrentRefreshToken(User user, string oldToken, string newToken)
+    // {
+    //     var oldTokenRecords = _databaseContext.Bearers
+    //     .Where(ex => ex.UserId == user.Id && ex.RefreshToken == oldToken);
+
+    //     if(await oldTokenRecords.AnyAsync() == false)
+    //     {
+    //         return Result.Failure(new Error("123", "dont have this token"));
+    //     }
+
+    //     _databaseContext.Bearers.Remove(await oldTokenRecords.FirstAsync());
+
+    //     _databaseContext.Bearers.AddAsync(
+    //         new RefreshableBearerRecord(
+
+    //         )
+    //     );
+
+    // }
 
 
 }

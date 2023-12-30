@@ -12,7 +12,8 @@ public class PayloadBase
     [JsonPropertyName("iss")]
     public string Issue {get; init; }
     [JsonPropertyName("exp")]
-    public NumericDate Explanetion { get; init; }
+    public long Explanetion { get; init; } // numericDate
     [JsonPropertyName("iat")]
-    public NumericDate IssuedAt { get; init; }
+    public long IssuedAt { get; init; }// numericDate
+
 }

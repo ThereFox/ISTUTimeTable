@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using Auth.Common;
 
 namespace Authorise;
 
@@ -137,7 +138,7 @@ public class CustomJWTAuthHandler : AuthenticationHandler<CustomJWTAuthSchemeOpt
 
     private async Task<Result<AuthBearer>> RefreshToken(string refreshToken)
     {
-        var newTokensResult = await _tokenChecker.RefreshToken(refreshToken);
+        var newTokensResult = await _tokenChecker.RefreshTokenAsync(refreshToken);
         if(newTokensResult.IsSucsesfull)
         {
             return Result.Sucsesfull<AuthBearer>(newTokensResult.ResultValue);

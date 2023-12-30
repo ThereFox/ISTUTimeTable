@@ -14,16 +14,16 @@ public class IntegrationApiTestsWithFackeDataBase
         sutClient = new WebApplicationFactory<ISTUTimeTable.View.Api.Program>().CreateClient();
     }
 
-    [Fact]
-    public async Task Test1()
-    {
-        //arrange
-        var response = await sutClient.GetAsync("/api");
-        //response.Content.ReadFromJsonAsync<>
+    //[Fact]
+    // public async Task Test1()
+    // {
+    //     //arrange
+    //     var response = await sutClient.GetAsync("/api");
+    //     //response.Content.ReadFromJsonAsync<>
         
         
-        //act
+    //     //act
 
-        //assert
-    }
+    //     //assert
+    // }
 }

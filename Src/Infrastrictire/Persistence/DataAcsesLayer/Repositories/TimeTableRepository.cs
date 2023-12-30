@@ -21,9 +21,20 @@ public class TimeTableRepository : ITimeTableRepository
             return Result.Failure(new Error("123", "123"));
         }
 
-        _databaseContext.Add(timetable);
-        await _databaseContext.SaveChangesAsync();
-        return Result.Sucsesfull();
+        return await saveTimeTable(timetable);
+    }
+
+    private async Task<Result> saveTimeTable(TimeTableOnWeek timetable)
+    {
+        try{
+            _databaseContext.Add(timetable);
+            await _databaseContext.SaveChangesAsync();
+            return Result.Sucsesfull();
+        }
+        catch(Exception ex)
+        {
+            return Result.Failure(new Error("112", ex.Message));
+        }
     }
 
     private async Task<bool> haveDualisationTimeTableOnWeek(TimeTableOnWeek elementForCheck)
@@ -39,8 +50,40 @@ public class TimeTableRepository : ITimeTableRepository
         .AnyAsync();
     }
 
-    public Task Change(List<object> changes)
+    public async Task<Result> Change(TimeTableOnWeek changes)
     {
-        throw new NotImplementedException();
+        if(await haveDualisationTimeTableOnWeek(changes) == false)
+        {
+            return await saveTimeTable(changes);
+        }        
+
+        return await updateTimeTable(changes);
+
+    }
+    private async Task<Result> updateTimeTable(TimeTableOnWeek changes)
+    {
+        try{
+        var res = await _databaseContext
+        .WeeksTimeTables
+        .Where(
+            ex =>
+            ex.Monday.Date == changes.Monday.Date
+            &&
+            ex.GroupId == changes.GroupId
+        ).FirstAsync();
+        
+        res.Monday = changes.Monday;
+        res.Thusday = changes.Thusday;
+        res.Wensday = changes.Wensday;
+        res.Tuesday = changes.Tuesday;
+        res.Friday = changes.Friday;
+
+        await _databaseContext.SaveChangesAsync();
+        return Result.Sucsesfull();
+    }
+    catch(Exception ex)
+    {
+        return Result.Failure(new Error("123", ex.Message));
+    }
     }
 }

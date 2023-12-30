@@ -11,18 +11,8 @@ namespace Authorise.JWT;
 public class RefreshPayload : PayloadBase
 {
     [JsonPropertyName("nbf")]
-    public NumericDate NotActiveBefore { get; init; }
+    public long NotActiveBefore { get; init; } // numericDate
+    [JsonPropertyName("ref")]
+    public long RefreshTimeout {get;init;}
 
-    public RefreshPayload(
-        string issue,
-        NumericDate issuedAt,
-        NumericDate explanetion,
-        NumericDate notActiveBefore
-        )
-    {
-        Issue = issue;
-        Explanetion = explanetion;
-        IssuedAt = issuedAt;
-        NotActiveBefore = notActiveBefore;
-    }
 }

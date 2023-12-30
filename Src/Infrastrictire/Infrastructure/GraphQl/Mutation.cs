@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Entitys.Exceprions;
+using Entitys.Exceptions;
 using GraphQl.Authorise.Attributes;
 using HotChocolate.Authorization;
 using HotChocolate.Subscriptions;
@@ -24,8 +25,9 @@ public class Mutation
     [Error(typeof(GroupAlreadyExistException))]
     public async Task AddGroup()
     {
+        await Task.CompletedTask;
 
-        _notificationSender.SendAsync("");
+        //_notificationSender.SendAsync("");
 
     }
     
@@ -68,7 +70,7 @@ public class Mutation
     [Error(typeof(UnacceptableTextException))]
     public async Task AddComment()
     {
-
+        await Task.CompletedTask;
     }
 
     [ForAnyAuthorize]

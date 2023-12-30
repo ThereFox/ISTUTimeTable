@@ -11,16 +11,18 @@ using Microsoft.Extensions.Options;
 using ISTUTImeTable.Common;
 using Src.Core.Common;
 using Authorise.JWT.DTO;
+using Auth.Common;
+using Authorise;
+using System.Text.Json;
 
 namespace Authorise.JWT;
 
-public class JWTTokenSource
+public class JWTTokenSource : ITokenCreater
 {
-    private const string Header = "{\"alg\": \"HS256\",\"typ\": \"JWT\"}}";
-
+    private const string Header = "{'alg': 'HS256','typ': 'JWT'}";
 
     private readonly IOptions<AuthSecrets> _secrets;
-    private readonly HMACSHA256 _encoder; //add secret key
+    private readonly HMACSHA256 _encoder;
 
     public JWTTokenSource(IOptions<AuthSecrets> secrets)
     {
@@ -34,24 +36,25 @@ public class JWTTokenSource
         var authTokenLifeTime = DateTime.Now.AddMinutes(tokenInfo.MinutsOfLife);
         var refreshTokenLifeTime = DateTime.Now.AddMinutes(tokenInfo.MinutsForRefresh);
 
-        var authPayload = new AuthPayload(
-            tokenInfo.userInfo,
-            _secrets.Value.Issuer,
-            new NumericDate(DateTime.Now),
-            new NumericDate(authTokenLifeTime)
-            );
-        var refreshPayload = new RefreshPayload(
-            _secrets.Value.Issuer,
-            new NumericDate(DateTime.Now),
-            new NumericDate(refreshTokenLifeTime),
-            new NumericDate(authTokenLifeTime)
-        );
+        var authPayload = new AuthPayload(){
+            UserId = tokenInfo.UserInfo.UserId,
+            Issue = _secrets.Value.Issuer,
+            IssuedAt = new NumericDate(DateTime.Now).NumberDate,
+            Explanetion = new NumericDate(authTokenLifeTime).NumberDate
+    };
+        var refreshPayload = new RefreshPayload(){
+            Issue = _secrets.Value.Issuer,
+            IssuedAt = new NumericDate(DateTime.Now).NumberDate,
+            RefreshTimeout = new NumericDate(refreshTokenLifeTime).NumberDate,
+            NotActiveBefore = new NumericDate(authTokenLifeTime).NumberDate
+        };
         var authPayloadJson = getObjectJson(authPayload);
         var refreshPayloadJson = getObjectJson(refreshPayload);
         return new AuthBearer(
             generateTocken(authPayloadJson),
             generateTocken(refreshPayloadJson)
         );
+        
     }
     
     public Result<PayloadType> ReadFromString<PayloadType>(string input)
@@ -63,23 +66,55 @@ public class JWTTokenSource
         
         var parts = input.Split('.');
 
-        if(parts.Length != 3 || parts == null)
+        if(parts == null || parts.Length != 3)
         {
             return Result.Failure<PayloadType>(new Error("2", "Token invalid"));
         }
-        if(CheckUnchanging(parts).IsSucsesfull == false)
+
+        var checkUnchangingResult = CheckUnchanging(parts);
+
+        if(checkUnchangingResult.IsSucsesfull == false)
         {
-            return Result.Failure<PayloadType>(new Error("3", "TokenInfoWosChange"));
+            return Result.Failure<PayloadType>(new Error("3", $"TokenInfoWasChange: {checkUnchangingResult.ErrorInfo.Code} - {checkUnchangingResult.ErrorInfo.Message}"));
         }
 
-        var content = JsonConvert.DeserializeObject<PayloadType>(parts[1]);
-
-        if(content is null)
+        var contentResult = readEncodedPayload<PayloadType>(parts[1]);
+        
+        if(contentResult.IsSucsesfull == false)
         {
-            return Result.Failure<PayloadType>(new Error("4", ""));
+            return Result.Failure<PayloadType>(contentResult.ErrorInfo);
         }
+        
+        var content = contentResult.ResultValue;
+
         return Result.Sucsesfull<PayloadType>(content);
 
+    }
+
+    private Result<PayloadType> readEncodedPayload<PayloadType>(string payload)
+    {
+        try{
+            var decodedPayload = getDecodedString(payload).Replace("\\\"", "'").Replace("\"", "");
+
+            var type = typeof(PayloadType);
+            
+            var content = (PayloadType)JsonConvert.DeserializeObject(
+                decodedPayload,
+                typeof(PayloadType)
+                );
+            
+
+            if(content is null)
+            {
+                return Result.Failure<PayloadType>(new Error("123", "Parse error"));
+            }
+
+            return Result.Sucsesfull<PayloadType>(content);
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure<PayloadType>(new Error("123", ex.Message));
+        }
     }
 
     private string generateTocken(string payloadJson)
@@ -109,7 +144,7 @@ public class JWTTokenSource
     }
     private byte[] getSignature(string EncodedHeader, string EncodedPayload)
     {
-        return getEncodedBytesFromString($"{_secrets.Value.JWTSecrets}.{EncodedHeader}.{EncodedPayload}");
+        return  getEncodedBytesFromString($"{_secrets.Value.JWTSecrets}.{EncodedHeader}.{EncodedPayload}");
     }
     private byte[] getEncodedBytesFromString(string initialData)
     {
@@ -120,7 +155,7 @@ public class JWTTokenSource
     private string getDecodedString(string encodedString)
     {
         var encodedTextBytes = Convert.FromBase64String(encodedString);
-        return Encoding.UTF8.GetString(encodedTextBytes);
+        return Encoding.ASCII.GetString(encodedTextBytes);
     }
 
     private bool IsJWTToken(string type)
@@ -134,12 +169,14 @@ public class JWTTokenSource
 
     private Result CheckUnchanging(string[] parts)
     {
-        var header = JsonConvert.DeserializeObject<HeaderContent>(parts[0]);
+        var headerParseResult = readHeaderContent(parts[0]);
 
-        if(header == null)
+        if(headerParseResult.IsSucsesfull == false)
         {
-            return Result.Failure(new Error("4", "Header uncurrect"));
+            return Result.Failure(headerParseResult.ErrorInfo);
         }
+
+        var header = headerParseResult.ResultValue;
 
         if(IsJWTToken(header.Type) == false)
         {
@@ -148,18 +185,43 @@ public class JWTTokenSource
 
         if(HaveAvaliableAlgholitm(header.Algorithm) == false)
         {
-            return Result.Failure(new Error("6", "Algholitm not support"));
+            return Result.Failure(new Error("6", "Algholithm not support"));
         }
 
         var CheckCodeFromToken = parts[2];
-        var GeneratedCheckCode = getSignature(parts[0], parts[1]);
+        var GeneratedCheckCode = getEncodedStringFromBytes(getSignature(parts[0], parts[1]));
 
-        if(String.Equals(CheckCodeFromToken, GeneratedCheckCode))
+        if(realCodeEqualExpected(GeneratedCheckCode, CheckCodeFromToken) == false)
         {
             return Result.Failure(new Error("123", "CRC changed"));
         }
 
         return Result.Sucsesfull();
-    }    
+    }
 
+    private bool realCodeEqualExpected(string generatedCode, string expectedCode)
+    {
+        var compareResult = string.Compare(generatedCode, expectedCode);
+        return compareResult == 0;
+    }
+    private Result<HeaderContent> readHeaderContent(string encodedHeader)
+    {
+        try
+        {
+            var header = getDecodedString(encodedHeader);
+            var headerContent = JsonConvert.DeserializeObject<HeaderContent>(header);
+
+            if(headerContent == null)
+            {
+                return Result.Failure<HeaderContent>(new Error("4", "Header uncurrect"));
+            }
+
+            return Result.Sucsesfull<HeaderContent>(headerContent);
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure<HeaderContent>(new Error("4", $"Parse error: {ex.Message}"));
+        }
+        
+    }
 }

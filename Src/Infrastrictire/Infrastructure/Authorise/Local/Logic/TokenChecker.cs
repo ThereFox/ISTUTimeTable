@@ -1,17 +1,27 @@
 ﻿using App.Interfaces;
 using App.token;
+using Auth.Common;
+using Authorise;
 using Authorise.JWT;
 using Authorise.JWT.DTO;
 using ISTUTimeTable.Entitys;
 using ISTUTImeTable.Common;
+using Src.Core.Common;
 
 namespace Authorise;
-public class RefreshableAuthoriseTokenChecker : IAuthorisationTokenChecker
+public class JWTTokenWorker : IAuthorisationTokenChecker
 {
-    private readonly JWTTokenSource _tokenSource;
+    private readonly ITokenCreater _tokenSource;
     private readonly IRefreshTokenRepository _refreshTokens;
 
-    public async Task<Result<AuthBearer>> GenerateToken(TokenInfo info)
+    public JWTTokenWorker(ITokenCreater tokenCreater, IRefreshTokenRepository refreshTokenRepository)
+    {
+        _tokenSource = tokenCreater;
+        _refreshTokens = refreshTokenRepository;
+    }
+
+
+    public async Task<Result<AuthBearer>> GenerateTokenAsync(TokenInfo info)
     {
         var token = _tokenSource.Generate(info);
 
@@ -42,7 +52,7 @@ public class RefreshableAuthoriseTokenChecker : IAuthorisationTokenChecker
         return Result.Sucsesfull<TokenUserInfo>(new TokenUserInfo(tokenInfo.UserId, (Role)tokenInfo.UserRoleId));
     }
 
-    public async Task<Result<AuthBearer>> RefreshToken(string RefreshToken)
+    public async Task<Result<AuthBearer>> RefreshTokenAsync(string RefreshToken)
     {
         var ContainRefreshTokenResult = await _refreshTokens.ContainRefreshToken(RefreshToken);
 
@@ -74,6 +84,6 @@ public class RefreshableAuthoriseTokenChecker : IAuthorisationTokenChecker
 
     private bool TokenIsExplained(AuthPayload token)
     {
-        return (DateTime)token.Explanetion > DateTime.Now;
+        return (DateTime)new NumericDate(token.Explanetion) > DateTime.Now;
     }
 }

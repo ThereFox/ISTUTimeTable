@@ -16,5 +16,5 @@ public sealed class Error
         Message = message;
     }
 
-    public static Error None =>new Error(String.Empty,String.Empty);
+    public static Error None => new Error("-","None");
 }

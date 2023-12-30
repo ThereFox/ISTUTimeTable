@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -16,6 +16,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\Domain\Entitys\ISTUTimeTable.Entitys.csproj" />
     <ProjectReference Include="..\..\..\Core\Common\ISTUTImeTable.Common\ISTUTImeTable.Common.csproj" />
+    <ProjectReference Include="..\..\..\Core\App\App\App.csproj" />
+    <ProjectReference Include="..\Authorise\Authorise.csproj" />
   </ItemGroup>
 
 </Project>
