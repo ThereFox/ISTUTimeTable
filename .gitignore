@@ -395,6 +395,8 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+.github
+
 .vscode
 
 private*
