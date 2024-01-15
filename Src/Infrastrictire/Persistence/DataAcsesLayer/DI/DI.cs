@@ -14,13 +14,7 @@ public static class DI
 {
     public static IServiceCollection AddEFPersistenseLayer(this IServiceCollection services, IConfiguration configuration)
     {
-        // services.AddDbContext<UsersDBContext>(
-        //     options => options.UseNpgsql(
-        //         configuration.GetConnectionString("BaseDataBase")
-        //     ));
-
-        // services.AddSingleton<ILowLevelDBData, UsersDBContext>();
-
+        //services.AddSingleton<>
 
         return services;
     }

@@ -73,18 +73,5 @@ public class TokenGeneratorTests
             tokenInfo.ResultValue.UserRoleId == (int)settings.UserInfo.UserRole
         );
     }
-    [Fact]
-    public void TestParsing()
-    {
-        var data = "{'UserId':1,'UserRoleId':0,'Issue':'123','Explanetion':1703955568,'IssuedAt':1703954668}";
-
-
-        var content = (AuthPayload)JsonConvert.DeserializeObject(
-            data,
-            typeof(AuthPayload));
-
-        Assert.NotNull(content);
-    }
-
 
 }

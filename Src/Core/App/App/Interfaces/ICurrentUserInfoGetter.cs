@@ -6,9 +6,8 @@ using ISTUTimeTable.Entitys;
 
 namespace App.Interfaces;
 
-public interface IUserAndGroupRepository
+public interface ICurrentUserInfoGetter
 {
-    public User GetUser(int id);
-    public Group GetGroup(int id);
-    
+    public Group GetGroupFromConcrectUser();
+     
 }

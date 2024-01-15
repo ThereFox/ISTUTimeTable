@@ -12,7 +12,8 @@ namespace DataAcsesLayer.Repositories;
 
 public class TimeTableRepository : ITimeTableRepository
 {
-    private readonly UsersDBContext _databaseContext;
+    private readonly UsersDBContext _databaseContext = new();
+
 
     public async Task<Result> Add(TimeTableOnWeek timetable)
     {
@@ -85,5 +86,15 @@ public class TimeTableRepository : ITimeTableRepository
     {
         return Result.Failure(new Error("123", ex.Message));
     }
+    }
+
+    public Task<Result<TimeTableOnWeek>> GetCurrentTimeTableOnWeekForGroup(Group group)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Result<TimeTableOnWeek>> GetTimeTableOnWeekForGroupByMondayDate(Group group, DateOnly MondayDate)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GraphQl.Errors;
 using GraphQl.Mutations;
 using HotChocolate;
 using ISTUTimeTable.Infrastruction.GraphQl.Querys;
@@ -12,18 +13,17 @@ public static class DI
 {
     public static IServiceCollection AddGraphQLInfrastruction(this IServiceCollection services)
     {
-            services.AddGraphQLServer(
-                SchemaBuilder
-                .New()
+        services.AddAuthorization();
+
+            services.AddGraphQLServer().AddAuthorizationCore()
                 .AddQueryType<Query>()
                 .AddMutationType<Mutation>()
                 .AddSubscriptionType<Subscriptions>()
-                .Create()
-                .ToString()
-            )
-            .AddAuthorizationCore()
-            .AddInMemorySubscriptions()
-            .AddDefaultTransactionScopeHandler();
+                .AddErrorFilter<SimpleCustomErrorFiltr>()
+            // .AddInMemorySubscriptions()
+            // .AddDefaultTransactionScopeHandler()
+            ;
+            services.AddHttpResponseFormatter<StatusCodeHandling>();
 
             return services;
     }

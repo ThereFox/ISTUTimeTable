@@ -17,27 +17,18 @@ public class Program
 
         builder.Configuration.AddJsonFile("./secrets.json");
         builder.Services.Configure<AuthSecrets>(builder.Configuration);
-
-        builder.Services.AddCustomJWTAuthService();
-
-        builder.Services.AddGraphQLInfrastruction();
-
-
         builder.Services.AddControllers();
+        builder.Services.AddCustomJWTAuthService();
+        builder.Services.AddGraphQLInfrastruction();
 
 
         var app = builder.Build();
 
         app.UseWebSockets();
-
-        app.MapGraphQL("/api/mainData");
-
         app.UseHttpsRedirection();
-
         app.UseAuthorization();
-
         app.MapControllers();
-
+        app.MapGraphQL("/api/mainData");
         app.Run();
 
         }

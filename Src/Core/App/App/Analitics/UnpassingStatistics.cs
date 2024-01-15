@@ -9,7 +9,7 @@ namespace App.Analitics;
 
 public class UnpassingStatistics
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IUserAndGroupRepository _userRepository;
     private readonly IUnpassingRepository _unpassingSource;
 
     public void GetStatistickByUser(int userId)

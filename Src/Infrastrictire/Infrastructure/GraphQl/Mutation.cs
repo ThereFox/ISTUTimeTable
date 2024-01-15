@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Auth.Common;
 using Entitys.Exceprions;
 using Entitys.Exceptions;
 using GraphQl.Authorise.Attributes;
@@ -144,5 +145,20 @@ public class Mutation
     {
 
     }
+
+    [GraphQLName("GenerateToken")]
+    [GraphQLDescription("Generate auth token")]
+    public async Task<AuthBearer> Auth(string login, string password)
+    {
+        throw new NotImplementedException();
+    }
+
+    [GraphQLName("GenerateToken")]
+    [GraphQLDescription("Generate auth token")]
+    public async Task<AuthBearer> RefreshAuthToken(string refreshToken)
+    {
+        throw new NotImplementedException();
+    }
+
 
 }

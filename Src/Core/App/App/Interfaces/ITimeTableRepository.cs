@@ -11,5 +11,8 @@ namespace Src.Core.App.Interfaces
     {
         public Task<Result> Add(TimeTableOnWeek timetable);
         public Task<Result> Change(TimeTableOnWeek changes);
+        public Task<Result<TimeTableOnWeek>> GetCurrentTimeTableOnWeekForGroup(Group group);
+        public Task<Result<TimeTableOnWeek>> GetTimeTableOnWeekForGroupByMondayDate(Group group, DateOnly MondayDate);
+        
     }
 }
