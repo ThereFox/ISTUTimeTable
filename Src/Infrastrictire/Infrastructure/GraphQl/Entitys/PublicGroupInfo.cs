@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Entitys.User;
-
-public class publicGroupInfo
+namespace ISTUTimeTable.Src.Infrastructure.GraphQl.Entitys;
+public class PublicGroupInfo
 {
     public string Speciality;
-    public List<publicUserInfo> Students;
+    public List<PublicUserInfo> Students;
 }

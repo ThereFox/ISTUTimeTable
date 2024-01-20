@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 
-namespace Authorise.DIService;
+namespace ISTUTimeTable.Src.Infrastructure.Authorise.Scheme;
 
 public class CustomJWTAuthSchemeOption : AuthenticationSchemeOptions
 {

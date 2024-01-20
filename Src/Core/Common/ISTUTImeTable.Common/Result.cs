@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ISTUTImeTable.Common;
+namespace ISTUTimeTable.Src.Core.Common;
 
 public class Result
 {

@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ISTUTimeTable.Entitys;
+using ISTUTimeTable.Src.Core.Domain.Entitys;
 
-namespace Entitys.User;
+namespace ISTUTimeTable.Src.Infrastructure.GraphQl.Entitys;
 
-public class publicUserInfo
+public class PublicUserInfo
 {
     public FullName Name;
     public string publicIndentificator;

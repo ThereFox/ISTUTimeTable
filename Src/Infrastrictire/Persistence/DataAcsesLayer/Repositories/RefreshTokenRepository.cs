@@ -1,16 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using App.token;
-using Auth.Common;
-using Authorise.JWT;
-using ISTUTimeTable.Entitys;
-using ISTUTImeTable.Common;
-using ISTUTImeTable.DataAcsesLayer;
+using ISTUTimeTable.Src.Core;
+using ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.Context;
+using ISTUTimeTable.Src.Core.Common;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer.Payload;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Interfaces;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer;
 
-namespace DataAcsesLayer.Repositories;
+namespace ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.Repositories;
 
 public class RefreshTokenRepository : IRefreshTokenRepository
 {

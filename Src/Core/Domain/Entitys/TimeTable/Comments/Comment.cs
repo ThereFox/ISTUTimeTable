@@ -1,22 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace ISTUTimeTable.Src.Core.Domain.Entitys;
 
-namespace ISTUTimeTable.Entitys
+public class Comment
 {
-    public class Comment
-    {
-        public int Id;
-        public DateOnly Date;
+    public int Id;
+    public DateOnly Date;
 
-        public int WriterId {get;set;}
-        public User Writer;
+    public int WriterId {get;set;}
+    public User Writer;
 
-        public int LessonId {get;set;}
-        public Lesson ForLesson;
+    public int LessonId {get;set;}
+    public Lesson ForLesson;
 
-        public string Message;
-        public CommentType commentType;
-    }
+    public string Message;
+    public CommentType commentType;
 }

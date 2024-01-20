@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GraphQl.Roles;
+namespace ISTUTimeTable.Src.Infrastructure.GraphQl.Authorise.Roles;
 
 public static class RolesNames
 {

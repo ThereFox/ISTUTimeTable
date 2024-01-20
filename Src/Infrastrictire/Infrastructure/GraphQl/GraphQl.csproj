@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HotChocolate" Version="13.7.0" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="13.7.0" />
+    <PackageReference Include="HotChocolate.Authorization" Version="13.7.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Domain\Entitys\ISTUTimeTable.Entitys.csproj" />
+    <ProjectReference Include="..\..\..\Core\Common\ISTUTImeTable.Common\ISTUTImeTable.Common.csproj" />
+    <ProjectReference Include="..\..\..\Core\App\App\App.csproj" />
+    <ProjectReference Include="..\Authorise\Authorise.csproj" />
+    <ProjectReference Include="..\..\..\Core\Domain\Entitys\Domain.csproj" />
+    <ProjectReference Include="..\..\..\Core\App\App.csproj" />
+    <ProjectReference Include="..\..\..\Core\Common\ISTUTImeTable.Common\Common.csproj" />
+  </ItemGroup>
+
+</Project>

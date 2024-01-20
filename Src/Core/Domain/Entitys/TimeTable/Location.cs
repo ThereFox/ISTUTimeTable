@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace ISTUTimeTable.Src.Core.Domain.Entitys;
 
-namespace ISTUTimeTable.Entitys
-{
     public class Location
     {
         public int id;
@@ -14,4 +9,3 @@ namespace ISTUTimeTable.Entitys
 
         public List<Lesson> Lessons { get; set; }
     }
-}

@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ISTUTimeTable.Entitys;
 
-namespace App.token;
+using ISTUTimeTable.Src.Core.Domain.Entitys;
+
+namespace ISTUTimeTable.Src.Infrastructure.Authorise.Bearer.Payload;
 
 public class TokenUserInfo
 {

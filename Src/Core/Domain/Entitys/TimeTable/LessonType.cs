@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ISTUTimeTable.Src.Core.Domain.Entitys;
 
-namespace ISTUTimeTable.Entitys
-{
     public enum LessonType
     {
         Unknow = 0,
@@ -16,4 +10,3 @@ namespace ISTUTimeTable.Entitys
         ControllWork = 5,
         Exam = 6,
     }
-}

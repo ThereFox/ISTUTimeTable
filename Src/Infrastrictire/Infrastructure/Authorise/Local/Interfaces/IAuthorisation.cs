@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using App.token;
-using Auth.Common;
-using Authorise.JWT;
-using ISTUTimeTable.Entitys;
-using ISTUTImeTable.Common;
+using ISTUTimeTable.Src.Core.Common;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer.Payload;
 
-namespace App.Interfaces;
+namespace ISTUTimeTable.Src.Infrastructure.Authorise.Interfaces;
 
 public interface IAuthorisationTokenChecker
 {

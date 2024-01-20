@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using Entitys.Unpassings;
-using ISTUTimeTable.Entitys;
-using ISTUTImeTable.DataAcsesLayer;
-using Src.Core.App.Interfaces;
+using ISTUTimeTable.Src.Core.App.Interfaces;
+using ISTUTimeTable.Src.Core.Domain.Entitys;
+using ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.Context;
 
-namespace DataAcsesLayer.Repositories;
+namespace ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.Repositories;
 
 public class UnpassingRepository : IUnpassingRepository
 {

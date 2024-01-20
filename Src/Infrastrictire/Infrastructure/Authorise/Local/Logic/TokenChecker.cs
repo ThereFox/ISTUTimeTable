@@ -1,14 +1,12 @@
-﻿using App.Interfaces;
-using App.token;
-using Auth.Common;
-using Authorise;
-using Authorise.JWT;
-using Authorise.JWT.DTO;
-using ISTUTimeTable.Entitys;
-using ISTUTImeTable.Common;
-using Src.Core.Common;
+﻿using Authorise.Interfaces;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Interfaces;
+using ISTUTimeTable.Src.Core.Common;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer.Payload;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer;
+using ISTUTimeTable.Src.Core.Domain.Entitys;
 
-namespace Authorise;
+
+namespace Authorise.Logic;
 public class JWTTokenWorker : IAuthorisationTokenChecker
 {
     private readonly ITokenCreater _tokenSource;
@@ -25,12 +23,12 @@ public class JWTTokenWorker : IAuthorisationTokenChecker
     {
         var token = _tokenSource.Generate(info);
 
-        var saveTokenResult = await _refreshTokens.AddRefreshToken(info.UserInfo, token);
+        // var saveTokenResult = await _refreshTokens.AddRefreshToken(info.UserInfo, token);
 
-        if(saveTokenResult.IsSucsesfull == false)
-        {
-            return Result.Failure<AuthBearer>(new Error("1", "Connot save token"));
-        }
+        // if(saveTokenResult.IsSucsesfull == false)
+        // {
+        //     return Result.Failure<AuthBearer>(new Error("1", "Connot save token"));
+        // }
 
         return Result.Sucsesfull<AuthBearer>(token);
     }

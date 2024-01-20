@@ -1,10 +1,8 @@
-using System.Reflection;
-using Authorise.JWT;
-using Entitys.Unpassings;
-using ISTUTimeTable.Entitys;
 using Microsoft.EntityFrameworkCore;
+using ISTUTimeTable.Src.Core.Domain.Entitys;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer;
 
-namespace ISTUTImeTable.DataAcsesLayer;
+namespace ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.Context;
 
 internal class UsersDBContext : DbContext
 {

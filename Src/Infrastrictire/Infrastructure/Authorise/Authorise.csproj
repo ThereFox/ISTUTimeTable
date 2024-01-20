@@ -3,6 +3,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\App\App\App.csproj" />
     <ProjectReference Include="..\..\..\Core\Common\ISTUTImeTable.Common\ISTUTImeTable.Common.csproj" />
+    <ProjectReference Include="..\..\..\Core\Common\ISTUTImeTable.Common\Common.csproj" />
+    <ProjectReference Include="..\..\..\Core\Domain\Entitys\Domain.csproj" />
+    <ProjectReference Include="..\..\..\Core\App\App.csproj" />
   </ItemGroup>
 
   <ItemGroup>

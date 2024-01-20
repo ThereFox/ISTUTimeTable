@@ -1,15 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using App.Interfaces;
-using Auth.Common;
-using Entitys.Unpassings;
-using GraphQl.Authorise.Attributes;
-using ISTUTimeTable.Entitys;
-using ISTUTimeTable.Infrastruction.GraphQl.Entitys;
-using Src.Core.App.Interfaces;
+using ISTUTimeTable.Src.Core.App.Interfaces;
+using ISTUTimeTable.Src.Core.Domain.Entitys;
+using ISTUTimeTable.Src.Infrastructure.GraphQl.Authorise.Attributes;
 
-namespace ISTUTimeTable.Infrastruction.GraphQl.Querys;
+namespace ISTUTimeTable.Src.Infrastructure.GraphQl.Querys;
 
 public class Query
 {

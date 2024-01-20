@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GraphQl.Errors;
+namespace ISTUTimeTable.Src.Infrastructure.GraphQl.Errors;
 
 public class SimpleCustomErrorFiltr : IErrorFilter
 {

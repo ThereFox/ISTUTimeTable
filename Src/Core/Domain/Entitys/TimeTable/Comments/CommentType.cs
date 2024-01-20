@@ -1,9 +1,8 @@
-namespace ISTUTimeTable.Entitys
+namespace ISTUTimeTable.Src.Core.Domain.Entitys;
+
+public enum CommentType
 {
-    public enum CommentType
-    {
-        Opinion = 0,
-        HomeWork = 1,
-        Info = 2
-    }
+    Opinion = 0,
+    HomeWork = 1,
+    Info = 2
 }

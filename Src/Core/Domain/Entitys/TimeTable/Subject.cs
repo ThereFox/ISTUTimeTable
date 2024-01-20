@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ISTUTimeTable.Src.Core.Domain.Entitys;
 
-namespace ISTUTimeTable.Entitys
-{
     public class Subject
     {
         public int Id;
@@ -14,4 +8,3 @@ namespace ISTUTimeTable.Entitys
         public List<Lesson> Lessons;
 
     }
-}

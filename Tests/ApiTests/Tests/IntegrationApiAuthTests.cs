@@ -1,20 +1,12 @@
 using Microsoft.AspNetCore.Mvc.Testing;
-using ISTUTimeTable.View.Api;
-using System.Net.Http.Json;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using GraphQL.Client.Http;
-using System.Text.Json;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using GraphQL.Client.Serializer.Newtonsoft;
-using App.Interfaces;
-using Moq;
-using Entitys.Unpassings;
 using ApiTests.HelpfullEntitys.AuthMock;
 using ApiTests.Helpfull;
-using HotChocolate.Execution;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.AspNetCore.Hosting;
+using ISTUTimeTable.Src.View.API;
+using ISTUTimeTable.Src.Core.Domain.Entitys;
 
 namespace ISTUTimeTable.Tests.IntegrationApiTests;
 
@@ -26,7 +18,7 @@ public class IntegrationApiAuthTestsWithFakeDataSource
 
     public IntegrationApiAuthTestsWithFakeDataSource()
     {
-        var httpClientWithSucsessAuthService = new WebApplicationFactory<ISTUTimeTable.View.Api.Program>().WithWebHostBuilder(
+        var httpClientWithSucsessAuthService = new WebApplicationFactory<Program>().WithWebHostBuilder(
             ex => ex.ConfigureServices(
                 ex => {
                     ex.AddAuthentication(ex => ex.DefaultScheme = TestAuthOption.Name)
@@ -41,7 +33,7 @@ public class IntegrationApiAuthTestsWithFakeDataSource
             httpClientWithSucsessAuthService
         );
 
-        var httpClientWithFailAuthService = new WebApplicationFactory<ISTUTimeTable.View.Api.Program>().WithWebHostBuilder(
+        var httpClientWithFailAuthService = new WebApplicationFactory<Program>().WithWebHostBuilder(
             ex => ex.ConfigureTestServices(
                 ex => {
                     ex.AddAuthentication(ex => ex.DefaultScheme = TestAuthOption.Name)
@@ -117,4 +109,24 @@ public class IntegrationApiAuthTestsWithFakeDataSource
         //assert
         Assert.True(result != null && result.Errors == null || result.Errors.Any() == false);
     }
+
+    [Fact]
+    public async Task CanGetAuthBearer()
+    {
+        var query = new GraphQLHttpRequest(
+            @"mutation Test
+            {
+                GenerateToken
+                (
+                    login : '123',
+                    password : '123'
+                )
+                {
+                    authToken
+                    refreshToken
+                }
+            }");
+            _sutClientWithFailAuth
+    }
+
 }

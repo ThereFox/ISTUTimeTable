@@ -1,9 +1,8 @@
-namespace ISTUTimeTable.Entitys
+namespace ISTUTimeTable.Src.Core.Domain.Entitys;
+
+public enum Role
 {
-    public enum Role
-    {
-        Student = 0, 
-        Teacher,
-        Correcter
-    }
+    Student = 0, 
+    Teacher,
+    Correcter
 }

@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Auth.Common;
-using Entitys.Exceprions;
-using Entitys.Exceptions;
-using GraphQl.Authorise.Attributes;
 using HotChocolate.Authorization;
 using HotChocolate.Subscriptions;
+using ISTUTimeTable.Src.Core.Domain.Exceptions;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer;
+using ISTUTimeTable.Src.Infrastructure.GraphQl.Authorise.Attributes;
 
-namespace GraphQl.Mutations;
+namespace ISTUTimeTable.Src.Infrastructure.GraphQl.Mutations;
 
 public class Mutation
 {
     private ITopicEventSender _notificationSender;
+    
 
     public Mutation(ITopicEventSender sender)
     {
@@ -35,7 +31,7 @@ public class Mutation
     [OnlyForAdminAuthorize]
     [GraphQLName("DropGroup")]
     [GraphQLDescription("Delete group (avaliable for admin)")]
-    [Error(typeof(GroupDontHaveExistExcepiton))]
+    [Error(typeof(GroupAlreadyExistException))]
     public async Task DeleteGroup([ID] int id)
     {
 
@@ -146,13 +142,16 @@ public class Mutation
 
     }
 
+    [AllowAnonymous]
     [GraphQLName("GenerateToken")]
     [GraphQLDescription("Generate auth token")]
     public async Task<AuthBearer> Auth(string login, string password)
     {
-        throw new NotImplementedException();
+        await Task.CompletedTask;
+        return new AuthBearer("123", "123");
     }
 
+    [AllowAnonymous]
     [GraphQLName("GenerateToken")]
     [GraphQLDescription("Generate auth token")]
     public async Task<AuthBearer> RefreshAuthToken(string refreshToken)

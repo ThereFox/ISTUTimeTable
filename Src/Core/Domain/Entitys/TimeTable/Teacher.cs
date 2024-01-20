@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ISTUTimeTable.Entitys;
-
-namespace Entitys.TimeTable;
+namespace ISTUTimeTable.Src.Core.Domain.Entitys;
 
 public class Teacher
 {

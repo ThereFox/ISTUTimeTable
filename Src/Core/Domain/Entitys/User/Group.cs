@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ISTUTimeTable.Entitys;
+﻿namespace ISTUTimeTable.Src.Core.Domain.Entitys;
 
-namespace ISTUTimeTable.Entitys
-{
     public class Group
     {
         public int Id { get; set; }
@@ -16,4 +9,3 @@ namespace ISTUTimeTable.Entitys
         public List<User> Students { get; set; }
         public List<TimeTableOnWeek> TimeTablesOnWeeks { get; set; }
     }
-}

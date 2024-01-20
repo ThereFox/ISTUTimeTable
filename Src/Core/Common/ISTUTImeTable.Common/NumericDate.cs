@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace ISTUTimeTable.Src.Core.Common;
 
-namespace Src.Core.Common
-{
     public struct NumericDate
     {
         public readonly long NumberDate;
@@ -26,4 +21,3 @@ namespace Src.Core.Common
         }
 
     }
-}

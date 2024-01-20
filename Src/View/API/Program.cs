@@ -1,12 +1,11 @@
-using HotChocolate;
-using Microsoft.Extensions.Options;
-using ISTUTimeTable.Infrastruction.GraphQl.Querys;
-using ISTUTimeTable.Infrastruction.GraphQl.Entitys;
-using GraphQl;
-using Authorise;
-using ISTUTImeTable.Common;
+using ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.DI;
+using ISTUTimeTable.Src;
+using ISTUTimeTable.Src.Infrastructure.GraphQl.DI;
 
-namespace ISTUTimeTable.View.Api;
+using ISTUTimeTable.Src.Core.Common;
+using ISTUTimeTable.Src.Infrastructure.Authorise.DIService;
+
+namespace ISTUTimeTable.Src.View.API;
 
 public class Program
 {
@@ -20,9 +19,11 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddCustomJWTAuthService();
         builder.Services.AddGraphQLInfrastruction();
+        builder.Services.AddEFPersistenseLayer();
 
 
         var app = builder.Build();
+
 
         app.UseWebSockets();
         app.UseHttpsRedirection();

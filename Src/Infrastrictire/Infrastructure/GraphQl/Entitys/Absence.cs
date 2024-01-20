@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HotChocolate;
-
-namespace ISTUTimeTable.Infrastruction.GraphQl.Entitys;
+namespace ISTUTimeTable.Src.Infrastructure.GraphQl.Entitys;
 
 public class Absence
 {

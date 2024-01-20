@@ -1,21 +1,16 @@
-using System.Reflection.Metadata;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Authorise.DIService;
 using Microsoft.AspNetCore.Authentication;
-using ISTUTImeTable.Common;
-using App.token;
-using App.Interfaces;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
-using Auth.Common;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Interfaces;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer.Payload;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer;
+using ISTUTimeTable.Src.Core.Common;
 
-namespace Authorise;
+
+namespace ISTUTimeTable.Src.Infrastructure.Authorise.Scheme;
 
 public class CustomJWTAuthHandler : AuthenticationHandler<CustomJWTAuthSchemeOption>
 {
@@ -24,8 +19,16 @@ public class CustomJWTAuthHandler : AuthenticationHandler<CustomJWTAuthSchemeOpt
 
     private readonly IAuthorisationTokenChecker _tokenChecker;
 
-    public CustomJWTAuthHandler(IOptionsMonitor<CustomJWTAuthSchemeOption> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock) 
+    public CustomJWTAuthHandler(
+        IOptionsMonitor<CustomJWTAuthSchemeOption> options,
+        ILoggerFactory logger,
+        UrlEncoder encoder,
+        ISystemClock clock,
+        IAuthorisationTokenChecker tokenChecker
+        
+        ) : base(options, logger, encoder, clock) 
     {
+        _tokenChecker = tokenChecker;
     }
 
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -74,12 +77,19 @@ public class CustomJWTAuthHandler : AuthenticationHandler<CustomJWTAuthSchemeOpt
 
     private AuthenticateResult DontHaveAuntification()
     {
-        return AuthenticateResult.Fail(new AuntificationFaulureException());
+        return AuthenticateResult.NoResult();
     }
 
     private Result<string> getAuthTokenFromRequest()
     {
-        var authToken = this.Request.Headers.Where(ex => ex.Key == HeaderAuthTokenName).FirstOrDefault(null);
+        var tokens = this.Request.Headers.Where(ex => ex.Key == HeaderAuthTokenName);
+
+        if(tokens.Any() == false)
+        {
+            return Result.Failure<string>(new Error("123", "dontHaveToken"));
+        }
+
+        var authToken = tokens.First();
 
         if(authToken.Equals(null))
         {
@@ -94,7 +104,14 @@ public class CustomJWTAuthHandler : AuthenticationHandler<CustomJWTAuthSchemeOpt
     }
     private Result<string> getRefreshTokenFromRequest()
     {
-        var token = this.Request.Cookies.Where(ex => ex.Key == CookieRefreshTokenName).FirstOrDefault(null);
+        var tokens = this.Request.Cookies.Where(ex => ex.Key == CookieRefreshTokenName);
+
+        if(tokens.Any() == false)
+        {
+            return Result.Failure<string>(new Error("123", "dontHaveToken"));
+        }
+
+        var token = tokens.First();
 
         if(token.Equals(null))
         {

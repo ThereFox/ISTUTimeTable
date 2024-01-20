@@ -1,31 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ISTUTimeTable.Src.Core.Domain.Entitys;
 
-namespace ISTUTimeTable.Entitys
+public class TimeTableOnDay
 {
-    public class TimeTableOnDay
-    {
-        public int Id;
-        public DateOnly Date;
-        
-        public TimeTableOnWeek TimeTable;
+    public int Id {get;set;}
+    public DateOnly Date {get;set;}
+    
+    public TimeTableOnWeek TimeTable {get;set;}
 
-        public int FirstLessonId;
-        public Lesson FirstLesson;
+    public int FirstLessonId {get;set;}
+    public Lesson FirstLesson {get;set;}
 
-        public int SecondLessonId;
-        public Lesson SecondLesson;
+    public int SecondLessonId {get;set;}
+    public Lesson SecondLesson {get;set;}
 
-        public int ThrigthLessonId;
-        public Lesson ThrigthLesson;
+    public int ThrigthLessonId {get;set;}
+    public Lesson ThrigthLesson {get;set;}
 
-        public int FourthLessonId;
-        public Lesson FourthLesson;
+    public int FourthLessonId {get;set;}
+    public Lesson FourthLesson {get;set;}
 
-        public int FivethLessonId;
-        public Lesson FivethLesson;
-    }
+    public int FivethLessonId {get;set;}
+    public Lesson FivethLesson {get;set;}
 }

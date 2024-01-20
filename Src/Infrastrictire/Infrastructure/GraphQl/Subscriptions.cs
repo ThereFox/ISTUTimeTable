@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GraphQl.Authorise.Attributes;
-using HotChocolate;
-using ISTUTimeTable.Entitys;
+using ISTUTimeTable.Src.Infrastructure.GraphQl.Authorise.Attributes;
+using ISTUTimeTable.Src.Core.Domain.Entitys;
 
-namespace GraphQl;
+
+namespace ISTUTimeTable.Src.Infrastructure.GraphQl.Subscription;
 
 public class Subscriptions
 {

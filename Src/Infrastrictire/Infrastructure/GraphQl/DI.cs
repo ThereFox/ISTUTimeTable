@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
-using GraphQl.Errors;
-using GraphQl.Mutations;
-using HotChocolate;
-using ISTUTimeTable.Infrastruction.GraphQl.Querys;
-using Microsoft.Extensions.Configuration;
+using ISTUTimeTable.Src.Infrastructure.GraphQl.Authorise.Handler;
+using ISTUTimeTable.Src.Infrastructure.GraphQl.Errors;
+using ISTUTimeTable.Src.Infrastructure.GraphQl.Mutations;
+using ISTUTimeTable.Src.Infrastructure.GraphQl.Querys;
+using ISTUTimeTable.Src.Infrastructure.GraphQl.Subscription;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GraphQl;
+namespace ISTUTimeTable.Src.Infrastructure.GraphQl.DI;
 
 public static class DI
 {
@@ -15,13 +13,15 @@ public static class DI
     {
         services.AddAuthorization();
 
-            services.AddGraphQLServer().AddAuthorizationCore()
+            services.AddGraphQLServer()
+                .AddAuthorizationHandler<GraphQlAuthHandler>()
                 .AddQueryType<Query>()
                 .AddMutationType<Mutation>()
                 .AddSubscriptionType<Subscriptions>()
                 .AddErrorFilter<SimpleCustomErrorFiltr>()
-            // .AddInMemorySubscriptions()
-            // .AddDefaultTransactionScopeHandler()
+                .AddInMemorySubscriptions()
+                .AddDefaultTransactionScopeHandler()
+                .ModifyRequestOptions(ex => ex.IncludeExceptionDetails =  true)
             ;
             services.AddHttpResponseFormatter<StatusCodeHandling>();
 

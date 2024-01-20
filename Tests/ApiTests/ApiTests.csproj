@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Src\View\API\ISTUTimeTable.API.csproj" />
+    <ProjectReference Include="..\..\Src\View\API\API.csproj" />
   </ItemGroup>
 
 </Project>

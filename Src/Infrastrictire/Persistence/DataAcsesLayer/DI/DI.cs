@@ -1,20 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ISTUTImeTable.DataAcsesLayer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.Repositories;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
-namespace DataAcsesLayer;
+namespace ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.DI;
 
 public static class DI
 {
-    public static IServiceCollection AddEFPersistenseLayer(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddEFPersistenseLayer(this IServiceCollection services)
     {
-        //services.AddSingleton<>
+        services.AddSingleton<IRefreshTokenRepository, RefreshTokenRepository>();
 
         return services;
     }

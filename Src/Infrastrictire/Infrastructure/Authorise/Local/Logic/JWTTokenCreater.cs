@@ -1,21 +1,14 @@
 using System.Security.Cryptography;
-using System;
-using System.Buffers.Text;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
-using App.token;
 using Microsoft.Extensions.Options;
-using ISTUTImeTable.Common;
-using Src.Core.Common;
-using Authorise.JWT.DTO;
-using Auth.Common;
-using Authorise;
-using System.Text.Json;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Interfaces;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer;
+using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer.Payload;
+using Authorise.Interfaces;
+using ISTUTimeTable.Src.Core.Common;
 
-namespace Authorise.JWT;
+namespace Authorise.Logic;
 
 public class JWTTokenSource : ITokenCreater
 {
