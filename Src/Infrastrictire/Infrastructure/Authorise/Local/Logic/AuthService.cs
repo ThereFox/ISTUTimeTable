@@ -3,20 +3,21 @@ using ISTUTimeTable.Src.Infrastructure.Authorise.Interfaces;
 using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer;
 using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer.Payload;
 using ISTUTimeTable.Src.Core.App.DTO;
+using Authorise.Local.Interfaces;
 
 
 namespace ISTUTImeTable.Authorise.Logic;
 
-public class AuthService
+public class AuthService : IAuthService
 {
     private IAuntificator _auntificator;
     private IAuthorisationTokenChecker _tokenChecker;
 
-public AuthService(IAuntificator auntificator, IAuthorisationTokenChecker tokenChecker)
-{
-    _auntificator = auntificator;
-    _tokenChecker = tokenChecker;
-}
+    public AuthService(IAuntificator auntificator, IAuthorisationTokenChecker tokenChecker)
+    {
+        _auntificator = auntificator;
+        _tokenChecker = tokenChecker;
+    }
 
     public async Task<Result<AuthBearer>> Authification(AuntificateInfo authenticateInfo)
     {
@@ -39,7 +40,7 @@ public AuthService(IAuntificator auntificator, IAuthorisationTokenChecker tokenC
         return Result.Sucsesfull<AuthBearer>(tokenGenerateResult.ResultValue);
     }
 
-    public async Task<Result> Authorise(AuthBearer bearer)
+    public async Task<Result> IsAuthUser(AuthBearer bearer)
     {
         await Task.CompletedTask;
         

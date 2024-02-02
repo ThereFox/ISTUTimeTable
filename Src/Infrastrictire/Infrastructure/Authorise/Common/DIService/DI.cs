@@ -3,6 +3,8 @@ using ISTUTimeTable.Src.Infrastructure.Authorise.Scheme;
 using ISTUTimeTable.Src.Infrastructure.Authorise.Interfaces;
 using Authorise.Interfaces;
 using Authorise.Logic;
+using Authorise.Local.Interfaces;
+using ISTUTImeTable.Authorise.Logic;
 
 namespace ISTUTimeTable.Src.Infrastructure.Authorise.DIService;
 
@@ -12,6 +14,7 @@ public static class DI
     {
         service.AddSingleton<ITokenCreater, JWTTokenSource>();
         service.AddSingleton<IAuthorisationTokenChecker, JWTTokenWorker>();
+        service.AddSingleton<IAuthService, AuthService>();
         service
         .AddAuthentication(ex =>
         {

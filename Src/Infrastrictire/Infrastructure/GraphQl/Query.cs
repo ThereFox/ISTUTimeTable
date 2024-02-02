@@ -1,3 +1,5 @@
+using App.Interfaces;
+using App.Interfaces.NotEnded;
 using ISTUTimeTable.Src.Core.App.Interfaces;
 using ISTUTimeTable.Src.Core.Domain.Entitys;
 using ISTUTimeTable.Src.Infrastructure.GraphQl.Authorise.Attributes;
@@ -6,17 +8,25 @@ namespace ISTUTimeTable.Src.Infrastructure.GraphQl.Querys;
 
 public class Query
 {
-    private ICurrentUserInfoGetter _currentUserInfo;
-    private IUnpassingRepository _unpassings;
+    private IGroupRepository _groups;
+    private IUsersRepository _users;
     private ITimeTableRepository _timeTables;
-    private IUserAndGroupRepository _usersAndGroup;
+    private IUnpassingRepository _unpassings;
 
-    public Query(ICurrentUserInfoGetter currentUserInfoGetter, IUnpassingRepository unpassingRepository, ITimeTableRepository timeTableRepository, IUserAndGroupRepository userAndGroupRepository)
+    private ICurrentUserInfo _currentUserInfo; 
+
+    public Query(
+        IGroupRepository groupRepository,
+        IUnpassingRepository unpassingRepository,
+        ITimeTableRepository timeTableRepository,
+        IUsersRepository usersRepository,
+        ICurrentUserInfo currentUserInfo)
     {
-        _currentUserInfo = currentUserInfoGetter;
-        _unpassings = unpassingRepository;
+        _currentUserInfo = currentUserInfo;
+        _groups = groupRepository;
+        _users = usersRepository;
         _timeTables = timeTableRepository;
-        _usersAndGroup = userAndGroupRepository;
+        _unpassings = unpassingRepository;
     }
 
 
@@ -25,28 +35,39 @@ public class Query
     [GraphQLDescription("Get Absences from group of current user for concrete day")]
     public async Task<List<Unpassing>> GetUnpassingsFromCurronUserGroupByDay(DateOnly date)
     {
-        var currentUserGroup = _currentUserInfo.GetGroupFromConcrectUser();
-        var unpassing = await _unpassings.GetAllByDayAndGroup(currentUserGroup, date);
+        var currentUser = await _currentUserInfo.Get();
+
+        if(currentUser.IsSucsesfull == false)
+        {
+            throw new Exception();
+        }
+
+        var unpassing = await _unpassings.GetByGroupAndDate(currentUser.ResultValue.Id, date);
         
-        return unpassing;
+        return unpassing.ResultValue;
     }
 
     [ForAnyAuthorize]
     [GraphQLName("GetTimeTableOnWeek")]
     [GraphQLDescription("Get Timetable for group of current user")]
     // [Error(typeof(Exception))]///
-    public async Task<TimeTableOnWeek> GetLastTimeTableOnWeekForCurrentUserGroup()
+    public async Task<TimeTableOnWeek> GetCurrentTimeTableOnWeekForCurrentUserGroup()
     {
-        var currentUserGroup = _currentUserInfo.GetGroupFromConcrectUser();
-        var lastTimeTable = await _timeTables.GetCurrentTimeTableOnWeekForGroup(currentUserGroup);
+        var currentUserGroup = await _currentUserInfo.Get();
 
-        // if(lastTimeTable.IsSucsesfull == false)
-        // {
-        //     throw new Exception("TimeTable for current week dont exist");
-        // }
+        if(currentUserGroup.IsSucsesfull == false)
+        {
+            throw new Exception();
+        }
 
+        var TimeTable = await _timeTables.GetCurrentByGroupId(currentUserGroup.ResultValue.GroupId);
 
-        return lastTimeTable.ResultValue;
+        if(TimeTable.IsSucsesfull == false)
+        {
+            throw new Exception();
+        }
+
+            return TimeTable.ResultValue;
     }
 
     [ForAnyAuthorize]
@@ -54,16 +75,12 @@ public class Query
     [GraphQLDescription("Get Timetable for concrete group")]
     public async Task<TimeTableOnWeek> GetCurrentTimeTableOnWeekForGroup([ID]int groupId)
     {
-        var group = _usersAndGroup.GetGroup(groupId);
-        var lastTimeTable = await _timeTables.GetCurrentTimeTableOnWeekForGroup(group);
-
-        if(lastTimeTable.IsSucsesfull == false)
+        var TimeTable = await _timeTables.GetCurrentByGroupId(groupId);
+        if(TimeTable.IsSucsesfull == false)
         {
-            throw new Exception("TimeTable for current week dont exist");
+            throw new Exception();
         }
-
-
-        return lastTimeTable.ResultValue;
+        return TimeTable.ResultValue;
     }
 
     [ForAnyAuthorize]
@@ -71,8 +88,14 @@ public class Query
     [GraphQLDescription("Get info of user by id")]
     public async Task<User> GetInfoByUser([ID]int id)
     {
-        await Task.CompletedTask;
-        return _usersAndGroup.GetUser(id);
+        var user = await _users.GetById(id);
+
+        if(user.IsSucsesfull == false)
+        {
+            throw new Exception();
+        }
+
+        return user.ResultValue;
     }
     
     [ForAnyAuthorize]
@@ -80,7 +103,28 @@ public class Query
     [GraphQLDescription("Get Group by id")]
     public async Task<Group> GetGroup([ID] int id)
     {
-        await Task.CompletedTask;
-        return _usersAndGroup.GetGroup(id);
+        var group = await _groups.GetById(id);
+
+        if(group.IsSucsesfull == false)
+        {
+            throw new Exception();
+        }
+
+        return group.ResultValue;
     }
+    
+    [ForAnyAuthorize]
+    [GraphQLName("GetAllGroups")]
+    [GraphQLDescription("Get all Group by scheme")]
+    public async Task<List<Group>> GetAllGroups()
+    {}
+
+    [ForAnyAuthorize]
+    [GraphQLName("GetAllUsers")]
+    [GraphQLDescription("Get all users by sceme")]
+    public async Task<List<User>> GetAllUsers()
+    {}
+    public async Task GetAllSubjects(){}
+    public async Task GetAllTeachers(){}
+    public async Task GetAllLocation(){}
 }
