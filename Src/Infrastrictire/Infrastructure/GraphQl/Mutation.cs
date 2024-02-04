@@ -161,7 +161,6 @@ public class Mutation
     [GraphQLDescription("Update unpassing of any user (avaliable for admin and currector)")]
     public async Task UpdateUnpassing(UpdateUnpassingFromCurrectorInputObject update)
     {
-
     }
 
     [AllowAnonymous]

@@ -10,9 +10,7 @@ public class UpdateUnpassingFromCurrectorInputObject
     public class UpdateUnpassingForCurrentUserInputObject
 {
     [GraphQLNonNullType]
-    public DateOnly Date {get;}
-    [GraphQLNonNullType]
-    public UserInputObject User {get;}
+    public int UnpassingId {get;}
     public List<int> LessonsId {get;}
     public UnpassingReasonInputObject Reason {get;}
 }
