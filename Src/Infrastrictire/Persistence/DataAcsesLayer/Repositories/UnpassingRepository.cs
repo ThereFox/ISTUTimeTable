@@ -1,5 +1,6 @@
 using System.Data.Entity;
 using ISTUTimeTable.Src.Core.App.Interfaces;
+using ISTUTimeTable.Src.Core.Common;
 using ISTUTimeTable.Src.Core.Domain.Entitys;
 using ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.Context;
 
@@ -44,6 +45,12 @@ public class UnpassingRepository : IUnpassingRepository
 
         return result;
     }
+
+    public Task<Result<List<Unpassing>>> GetByGroupAndDate(int GroupId, DateOnly date)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task Remove(int unpassingId)
     {
         _databaseContext
@@ -56,4 +63,18 @@ public class UnpassingRepository : IUnpassingRepository
         await _databaseContext.SaveChangesAsync();
     }
 
+    public Task<Result> Update(int UnpassingId, Unpassing unpassing)
+    {
+        throw new NotImplementedException();
+    }
+
+    Task<Result> IUnpassingRepository.Add(Unpassing unpassing)
+    {
+        throw new NotImplementedException();
+    }
+
+    Task<Result> IUnpassingRepository.Remove(int unpassingId)
+    {
+        throw new NotImplementedException();
+    }
 }

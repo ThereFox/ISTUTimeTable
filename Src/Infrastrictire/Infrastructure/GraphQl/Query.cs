@@ -117,14 +117,27 @@ public class Query
     [GraphQLName("GetAllGroups")]
     [GraphQLDescription("Get all Group by scheme")]
     public async Task<List<Group>> GetAllGroups()
-    {}
+    {
+        throw new Exception();
+    }
 
     [ForAnyAuthorize]
     [GraphQLName("GetAllUsers")]
     [GraphQLDescription("Get all users by sceme")]
     public async Task<List<User>> GetAllUsers()
-    {}
-    public async Task GetAllSubjects(){}
-    public async Task GetAllTeachers(){}
-    public async Task GetAllLocation(){}
+    {
+        throw new Exception();
+    }
+    public async Task GetAllSubjects()
+    {
+        throw new Exception();
+    }
+    public async Task GetAllTeachers()
+    {
+        throw new Exception();
+    }
+    public async Task GetAllLocation()
+    {
+        throw new Exception();
+    }
 }

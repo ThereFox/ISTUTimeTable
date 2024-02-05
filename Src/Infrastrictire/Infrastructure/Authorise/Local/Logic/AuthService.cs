@@ -54,4 +54,8 @@ public class AuthService : IAuthService
 
     }
 
+    public Task<Result<AuthBearer>> ReAuthification(AuthBearer bearer)
+    {
+        throw new NotImplementedException();
+    }
 }

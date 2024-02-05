@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,10 +8,9 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Domain\Entitys\ISTUTimeTable.Entitys.csproj" />
-    <ProjectReference Include="..\..\..\Core\App\App\App.csproj" />
+    <ProjectReference Include="..\..\..\Core\App\App.csproj" />
+    <ProjectReference Include="..\..\..\Core\Common\Common.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Authorise\Authorise.csproj" />
-    <ProjectReference Include="..\..\..\Core\Common\ISTUTImeTable.Common\Common.csproj" />
   </ItemGroup>
 
 

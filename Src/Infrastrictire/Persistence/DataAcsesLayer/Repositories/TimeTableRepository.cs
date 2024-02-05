@@ -93,4 +93,19 @@ public class TimeTableRepository : ITimeTableRepository
     {
         throw new NotImplementedException();
     }
+
+    public Task<Result> Update(TimeTableOnWeek changes)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Result<TimeTableOnWeek>> GetCurrentByGroupId(int groupId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Result> GetByGroupIdAndStartWeekDate(int groupId, DateOnly date)
+    {
+        throw new NotImplementedException();
+    }
 }
