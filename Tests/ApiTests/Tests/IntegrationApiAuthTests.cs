@@ -126,7 +126,16 @@ public class IntegrationApiAuthTestsWithFakeDataSource
                     refreshToken
                 }
             }");
-            _sutClientWithFailAuth
+        var result = await _sutClientWithFailAuth.SendMutationAsync<string>(query);
+
+        var httpResponse = result.AsGraphQLHttpResponse();
+
+        Assert.True(
+            httpResponse.StatusCode == System.Net.HttpStatusCode.OK
+            &&
+            String.IsNullOrWhiteSpace(httpResponse.ResponseHeaders.Where(ex => ex.Key == "Token").First().Value.First()) == false
+            );
+
     }
 
 }

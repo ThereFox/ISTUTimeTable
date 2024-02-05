@@ -17,7 +17,7 @@ public class Program
         builder.Configuration.AddJsonFile("./secrets.json");
         builder.Services.Configure<AuthSecrets>(builder.Configuration);
         builder.Services.AddControllers();
-        builder.Services.AddCustomJWTAuthService();
+        //builder.Services.AddCustomJWTAuthService();
         builder.Services.AddGraphQLInfrastruction();
         builder.Services.AddEFPersistenseLayer();
 
