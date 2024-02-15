@@ -8,7 +8,14 @@ namespace ISTUTimeTable.Src.Infrastructure.GraphQl.InputObjects;
 public class AddGroupInputObject
 {
     [GraphQLNonNullType]
-    public string Speciality {get;set;}
+    public string Speciality {get;}
     [GraphQLNonNullType]
-    public int Cource {get;set;}
+    public int Cource {get;}
+
+    public AddGroupInputObject(string speciality, int cource)
+    {
+        Speciality = speciality;
+        Cource = cource;
+    }
+
 }

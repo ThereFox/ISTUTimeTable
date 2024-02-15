@@ -9,9 +9,16 @@ namespace ISTUTimeTable.Src.Infrastructure.GraphQl.Entitys;
 public class AddUserInputObject
 {
     [GraphQLNonNullType]
-    public FullName fullName {get;set;}
+    public FullName FullName {get;}
     [GraphQLNonNullType]
-    public string PublicIdentificator {get;set;}
+    public string PublicIdentificator {get;}
     [GraphQLNonNullType]
-    public int GroupId {get;set;}
+    public int GroupId {get;}
+
+    public AddUserInputObject(FullName fullName, string publicIdentificator, int groupId)
+    {
+        FullName = fullName;
+        PublicIdentificator = publicIdentificator;
+        GroupId = groupId;
+    }
 }

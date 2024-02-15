@@ -7,6 +7,16 @@ namespace ISTUTimeTable.Src.Infrastructure.GraphQl.InputObjects;
 
 public class UpdateGroupInputObject
 {
-    public string Speciality {get;set;}
-    public int Cource {get;set;}
+    [GraphQLNonNullType]
+    public int GroupId { get; }
+    public string Speciality {get;}
+    public int Cource {get;}
+
+    public UpdateGroupInputObject(int groupId, string speciality, int cource)
+    {
+        GroupId = groupId;
+        Speciality = speciality;
+        Cource = cource;
+    }
+
 }

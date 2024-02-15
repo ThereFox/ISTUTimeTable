@@ -9,9 +9,17 @@ namespace ISTUTimeTable.Src.Infrastructure.GraphQl.InputObjects;
 public class AddCommentInputObject
 {
     [GraphQLNonNullType]
-    public int LessonId {get;set;}
+    public int LessonId {get;}
     [GraphQLNonNullType]
-    public string Message {get;set;}
+    public string Message {get;}
     [GraphQLNonNullType]
-    public CommentType commentType {get;set;}
+    public CommentType CommentType {get;}
+
+    public AddCommentInputObject(int lessonId, string message, CommentType commentType)
+    {
+        LessonId = lessonId;
+        Message = message;
+        CommentType = commentType;
+    }
+
 }
