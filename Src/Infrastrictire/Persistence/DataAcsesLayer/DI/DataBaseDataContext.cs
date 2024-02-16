@@ -4,7 +4,7 @@ using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer;
 
 namespace ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.Context;
 
-internal class UsersDBContext : DbContext
+public class UsersDBContext : DbContext
 {
     public DbSet<TimeTableOnWeek> WeeksTimeTables { get; set; }
     public DbSet<User> Users { get; set; }
@@ -14,5 +14,9 @@ internal class UsersDBContext : DbContext
     override protected void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(UsersDBContext).Assembly);
+    }
+
+    public UsersDBContext(DbContextOptions<UsersDBContext> builder) : base(builder)
+    {
     }
 }

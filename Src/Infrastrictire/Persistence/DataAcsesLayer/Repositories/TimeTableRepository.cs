@@ -8,7 +8,12 @@ namespace ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.Repositori
 
 public class TimeTableRepository : ITimeTableRepository
 {
-    private readonly UsersDBContext _databaseContext = new();
+    private readonly UsersDBContext _databaseContext;
+
+    public TimeTableRepository(UsersDBContext context)
+    {
+        _databaseContext = context;
+    }
 
 
     public async Task<Result> Add(TimeTableOnWeek timetable)

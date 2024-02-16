@@ -11,10 +11,14 @@ public class RefreshTokenRepository : IRefreshTokenRepository
 {
     private readonly UsersDBContext _databaseContext;
 
+    public RefreshTokenRepository(UsersDBContext context)
+    {
+        _databaseContext = context;
+    }
+
     public async Task<Result> AddRefreshToken(TokenUserInfo user, AuthBearer bearer)
     {
         throw new NotImplementedException();
-        //_databaseContext.Bearers.AddAsync(new RefreshableBearerRecord());
     }
 
     public async Task<Result> ContainRefreshToken(string refreshBearer)

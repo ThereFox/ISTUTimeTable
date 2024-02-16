@@ -7,7 +7,7 @@ public class ForAnyAuthorizeAttribute : AuthorizeAttribute
 {
     public ForAnyAuthorizeAttribute() : base()
     {
-        Policy = "AnyAuth";
+        Roles = null;
         Apply = ApplyPolicy.BeforeResolver;
     }
 }

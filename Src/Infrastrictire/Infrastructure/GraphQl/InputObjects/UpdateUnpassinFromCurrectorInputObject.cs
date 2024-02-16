@@ -13,7 +13,7 @@ public class UpdateUnpassingFromCurrectorInputObject
         [GraphQLNonNullType]
         public int UnpassingId {get;}
         public List<int> LessonsId {get;}
-        public UnpassingReasonInputObject Reason {get;}
+        public UnpassingReasonInputObject? Reason {get;}
 
         public UpdateUnpassingForCurrentUserInputObject(int unpassingId, List<int> lessonsId, UnpassingReasonInputObject reason)
         {

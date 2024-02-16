@@ -17,6 +17,7 @@ public static class DI
         service.AddSingleton<IAuthorisationTokenChecker, JWTTokenWorker>();
         service.AddSingleton<IAuthService, AuthService>();
         service.AddSingleton<IAuntificator, AuthDataChecker>();
+
         service
         .AddAuthentication(ex =>
         {

@@ -161,7 +161,7 @@ public class Mutation
     [GraphQLDescription("Update unpassing of current user")]
     public async Task<DefaultActionResponse> UpdateUnpassingForCurrentUser(UpdateUnpassingForCurrentUserInputObject update)
     {
-        return DefaultActionResponse.FromResult(Result.Sucsesfull());
+        return DefaultActionResponse.FromResult(Result.Failure(new Core.Common.Error("123", "Test error throwing")));
     }
 
     [ForCorrectorAuthorize]
@@ -177,8 +177,20 @@ public class Mutation
     [GraphQLDescription("Update unpassing of any user (avaliable for admin and currector)")]
     public async Task<DefaultActionResponse> UpdateUnpassing(UpdateUnpassingFromCurrectorInputObject update)
     {
-        return DefaultActionResponse.FromResult(Result.Sucsesfull());
+
+
+        return DefaultActionResponse.FromResult(Result.Failure(new Core.Common.Error("123", "Test error throwing")));
     }
+
+    //mutation Test
+    //{
+    //    UpdateUnpassing(update: { unpassingId: 1, lessonsId : [1,2,3], reason : null })
+    //    {
+    //        statusCode
+    //        info
+    //    }
+    //}
+
 
     [AllowAnonymous]
     [GraphQLName("GenerateToken")]
