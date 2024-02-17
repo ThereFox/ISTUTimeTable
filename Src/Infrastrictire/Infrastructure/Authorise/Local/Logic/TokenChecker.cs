@@ -7,7 +7,7 @@ using ISTUTimeTable.Src.Core.Domain.Entitys;
 
 
 namespace Authorise.Logic;
-public class JWTTokenWorker : IAuthorisationTokenChecker
+public class JWTTokenWorker : IAuthorisationTokenWorker
 {
     private readonly ITokenCreater _tokenSource;
     private readonly IRefreshTokenRepository _refreshTokens;

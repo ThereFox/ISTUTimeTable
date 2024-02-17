@@ -14,7 +14,7 @@ public static class DI
     public static IServiceCollection AddCustomJWTAuthService(this IServiceCollection service)
     {
         service.AddSingleton<ITokenCreater, JWTTokenSource>();
-        service.AddSingleton<IAuthorisationTokenChecker, JWTTokenWorker>();
+        service.AddSingleton<IAuthorisationTokenWorker, JWTTokenWorker>();
         service.AddSingleton<IAuthService, AuthService>();
         service.AddSingleton<IAuntificator, AuthDataChecker>();
 

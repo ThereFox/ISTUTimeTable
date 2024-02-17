@@ -17,14 +17,14 @@ public class CustomJWTAuthHandler : AuthenticationHandler<CustomJWTAuthSchemeOpt
     private const string HeaderAuthTokenName = "AuthToken";
     private const string CookieRefreshTokenName = "RefreshToken";
 
-    private readonly IAuthorisationTokenChecker _tokenChecker;
+    private readonly IAuthorisationTokenWorker _tokenChecker;
 
     public CustomJWTAuthHandler(
         IOptionsMonitor<CustomJWTAuthSchemeOption> options,
         ILoggerFactory logger,
         UrlEncoder encoder,
         ISystemClock clock,
-        IAuthorisationTokenChecker tokenChecker
+        IAuthorisationTokenWorker tokenChecker
         
         ) : base(options, logger, encoder, clock) 
     {

@@ -7,7 +7,7 @@ using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer.Payload;
 
 namespace ISTUTimeTable.Src.Infrastructure.Authorise.Interfaces;
 
-public interface IAuthorisationTokenChecker
+public interface IAuthorisationTokenWorker
 {
     public Task<Result<AuthBearer>> GenerateTokenAsync(TokenInfo info);
     public Task<Result<AuthBearer>> RefreshTokenAsync(string RefreshToken);

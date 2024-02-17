@@ -12,9 +12,9 @@ namespace ISTUTImeTable.Authorise.Logic;
 public class AuthService : IAuthService
 {
     private IAuntificator _auntificator;
-    private IAuthorisationTokenChecker _tokenChecker;
+    private IAuthorisationTokenWorker _tokenChecker;
 
-    public AuthService(IAuntificator auntificator, IAuthorisationTokenChecker tokenChecker)
+    public AuthService(IAuntificator auntificator, IAuthorisationTokenWorker tokenChecker)
     {
         _auntificator = auntificator;
         _tokenChecker = tokenChecker;

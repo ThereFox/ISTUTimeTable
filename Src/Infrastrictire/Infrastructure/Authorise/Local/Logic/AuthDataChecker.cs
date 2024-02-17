@@ -12,25 +12,27 @@ namespace Authorise.Local.Logic
 {
     public class AuthDataChecker : IAuntificator
     {
-        //private readonly IAuthDataRepository _repository;
+        private readonly IAuthDataRepository _repository;
 
         public AuthDataChecker(
-            //IAuthDataRepository repository
+            IAuthDataRepository repository
             )
         {
-            //_repository = repository;
+            _repository = repository;
         }
 
         public Result<User> Auntificate(AuntificateInfo auntificateInfo)
         {
-            //if (_repository.ContaintUser(auntificateInfo.Login) == false)
-            //{
-            //    return Result.Failure<User>(new Error("123", "Don't have user"));
-            //}
+            if (_repository.ContaintUser(auntificateInfo.Login) == false)
+            {
+                return Result.Failure<User>(new Error("123", "Don't have user"));
+            }
 
-            //var passwordHash = auntificateInfo;
+            var passwordHash = auntificateInfo.Password.GetHashCode().ToString();
 
-            return Result.Sucsesfull<User>(new User());
+            var getUserResult = _repository.GetUserByLoginAndPassword(auntificateInfo.Login, passwordHash);
+
+            return getUserResult;
         }
     }
 }
