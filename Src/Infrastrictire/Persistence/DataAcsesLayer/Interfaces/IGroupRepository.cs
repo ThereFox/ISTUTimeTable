@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ISTUTimeTable.Src.Core.Common;
-using ISTUTimeTable.Src.Core.Domain.Entitys;
 
 namespace App.Interfaces;
 

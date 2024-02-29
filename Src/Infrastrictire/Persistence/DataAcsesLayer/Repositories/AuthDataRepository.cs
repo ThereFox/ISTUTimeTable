@@ -1,6 +1,6 @@
 ﻿using Authorise.Local.Interfaces;
+using DataAcsesLayer.Entitys;
 using ISTUTimeTable.Src.Core.Common;
-using ISTUTimeTable.Src.Core.Domain.Entitys;
 using ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.Context;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
-﻿using ISTUTimeTable.Src.Core.App.DTO;
+﻿using DataAcsesLayer.Entitys;
+using ISTUTimeTable.Src.Core.App.DTO;
 using ISTUTimeTable.Src.Core.Common;
-using ISTUTimeTable.Src.Core.Domain.Entitys;
 using System;
 using System.Collections.Generic;
 using System.Linq;

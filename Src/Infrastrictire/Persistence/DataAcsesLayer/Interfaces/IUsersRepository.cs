@@ -1,5 +1,5 @@
+using DataAcsesLayer.Entitys;
 using ISTUTimeTable.Src.Core.Common;
-using ISTUTimeTable.Src.Core.Domain.Entitys;
 
 namespace ISTUTimeTable.Src.Core.App.Interfaces;
 
