@@ -9,13 +9,21 @@ namespace ISTUTimeTable.Src.Infrastructure.GraphQl.InputObjects;
 public class LessonInputObject
 {
     [GraphQLNonNullType]
-    public int SubjectId {get;set;}
+    public int SubjectId {get;}
     [GraphQLNonNullType]
-    public int TeacherId {get;set;}
+    public int TeacherId {get;}
     [GraphQLNonNullType]
-    public LessonType lessonType {get;set;}
+    public LessonType LessonType {get;}
     [GraphQLNonNullType]
-    public int LocationId {get;set;}
-    
-    
+    public int LocationId {get;}
+
+    public LessonInputObject(int subjectId, int teacherId, LessonType lessonType, int locationId)
+    {
+        SubjectId = subjectId;
+        TeacherId = teacherId;
+        LessonType = lessonType;
+        LocationId = locationId;
+
+    }
+
 }

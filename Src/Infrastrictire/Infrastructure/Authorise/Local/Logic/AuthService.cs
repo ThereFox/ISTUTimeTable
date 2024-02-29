@@ -4,6 +4,7 @@ using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer;
 using ISTUTimeTable.Src.Infrastructure.Authorise.Bearer.Payload;
 using ISTUTimeTable.Src.Core.App.DTO;
 using Authorise.Local.Interfaces;
+using ISTUTimeTable.Src.Core.Domain.Entitys;
 
 
 namespace ISTUTImeTable.Authorise.Logic;
@@ -11,9 +12,9 @@ namespace ISTUTImeTable.Authorise.Logic;
 public class AuthService : IAuthService
 {
     private IAuntificator _auntificator;
-    private IAuthorisationTokenChecker _tokenChecker;
+    private IAuthorisationTokenWorker _tokenChecker;
 
-    public AuthService(IAuntificator auntificator, IAuthorisationTokenChecker tokenChecker)
+    public AuthService(IAuntificator auntificator, IAuthorisationTokenWorker tokenChecker)
     {
         _auntificator = auntificator;
         _tokenChecker = tokenChecker;
@@ -40,7 +41,7 @@ public class AuthService : IAuthService
         return Result.Sucsesfull<AuthBearer>(tokenGenerateResult.ResultValue);
     }
 
-    public async Task<Result> IsAuthUser(AuthBearer bearer)
+    public async Task<Result<TokenUserInfo>> GetAuthUserInfoFromToken(AuthBearer bearer)
     {
         await Task.CompletedTask;
         
@@ -48,14 +49,20 @@ public class AuthService : IAuthService
 
         if(tokenInfo.IsSucsesfull)
         {
-            return Result.Sucsesfull();
+            return Result.Sucsesfull<TokenUserInfo>(tokenInfo.ResultValue);
         }
-        return Result.Failure(tokenInfo.ErrorInfo);
+        return Result.Failure<TokenUserInfo>(tokenInfo.ErrorInfo);
 
     }
 
-    public Task<Result<AuthBearer>> ReAuthification(AuthBearer bearer)
+    public async Task<Result<AuthBearer>> ReAuthification(AuthBearer bearer)
     {
-        throw new NotImplementedException();
+        var newBearer = await _tokenChecker.RefreshTokenAsync(bearer.RefreshToken);
+    
+        if(newBearer.IsSucsesfull == false)
+        {
+            return Result.Failure<AuthBearer>(newBearer.ErrorInfo);
+        }
+        return newBearer;
     }
 }

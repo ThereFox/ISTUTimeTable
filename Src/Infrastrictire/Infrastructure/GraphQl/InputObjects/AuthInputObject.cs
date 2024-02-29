@@ -8,8 +8,14 @@ namespace GraphQl.InputObjects;
 public class AuthInputObject
 {
     [GraphQLNonNullType]
-    public string Login {get;set;}
+    public string Login {get;}
     [GraphQLNonNullType]
-    public string Password {get;set;}
+    public string Password {get;}
+
+    public AuthInputObject(string login, string password)
+    {
+        Login = login;
+        Password = password;
+    }
 
 }

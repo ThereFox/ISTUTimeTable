@@ -4,6 +4,7 @@ using ISTUTimeTable.Src.Infrastructure.GraphQl.DI;
 
 using ISTUTimeTable.Src.Core.Common;
 using ISTUTimeTable.Src.Infrastructure.Authorise.DIService;
+using Microsoft.EntityFrameworkCore;
 
 namespace ISTUTimeTable.Src.View.API;
 
@@ -14,12 +15,17 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Configuration.AddJsonFile("./secrets.json");
+        var connectionString = builder.Configuration.GetConnectionString("MainDataBase");
+
+        builder.Configuration.AddJsonFile("./authSecrets.json");
+        builder.Services.AddHttpContextAccessor();
         builder.Services.Configure<AuthSecrets>(builder.Configuration);
         builder.Services.AddControllers();
         builder.Services.AddCustomJWTAuthService();
         builder.Services.AddGraphQLInfrastruction();
-        builder.Services.AddEFPersistenseLayer();
+        builder.Services.AddEFPersistenseLayer(
+            ex => ex.UseNpgsql(connectionString)
+            );
 
 
         var app = builder.Build();

@@ -73,7 +73,7 @@ public class Query
     [ForAnyAuthorize]
     [GraphQLName("GetTimeTableOnWeek")]
     [GraphQLDescription("Get Timetable for concrete group")]
-    public async Task<TimeTableOnWeek> GetCurrentTimeTableOnWeekForGroup([ID]int groupId)
+    public async Task<TimeTableOnWeek> GetCurrentTimeTableOnWeekForGroup(int groupId)
     {
         var TimeTable = await _timeTables.GetCurrentByGroupId(groupId);
         if(TimeTable.IsSucsesfull == false)

@@ -7,9 +7,8 @@ public class OnlyForAdminAuthorizeAttribute : AuthorizeAttribute
 {
     public OnlyForAdminAuthorizeAttribute() : base()
     {
-        Policy = "OnlyForAdmin";
         Apply = ApplyPolicy.BeforeResolver;
-        Roles = new string[] { RolesNames.Admin };
+        Roles = [RolesNames.Admin];
 
     }
 }

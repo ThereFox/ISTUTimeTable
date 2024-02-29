@@ -14,4 +14,11 @@ public class AddUnpassingInputObject
     public List<int> LessonsId {get;}
     [GraphQLNonNullType]
     public UnpassingReasonInputObject Reason {get;}
+
+    public AddUnpassingInputObject(DateOnly date, List<int> lessonsId, UnpassingReasonInputObject reason)
+    {
+        Date = date;
+        LessonsId = lessonsId;
+        Reason = reason;
+    }
 }

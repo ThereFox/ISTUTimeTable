@@ -8,6 +8,13 @@ namespace ISTUTimeTable.Src.Infrastructure.GraphQl.InputObjects;
 
 public class UpdatePublicUserInfoInputObject
 {
-    public FullName fullName {get;set;}
-    public string PublicIdentificator {get;set;}
+    public FullName FullName {get;}
+    public string PublicIdentificator {get;}
+
+    public UpdatePublicUserInfoInputObject(FullName fullName, string publicIdentificator)
+    {
+        FullName = fullName;
+        PublicIdentificator = publicIdentificator;
+    }
+
 }

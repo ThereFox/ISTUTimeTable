@@ -5,6 +5,7 @@ using Authorise.Interfaces;
 using Authorise.Logic;
 using Authorise.Local.Interfaces;
 using ISTUTImeTable.Authorise.Logic;
+using Authorise.Local.Logic;
 
 namespace ISTUTimeTable.Src.Infrastructure.Authorise.DIService;
 
@@ -13,8 +14,10 @@ public static class DI
     public static IServiceCollection AddCustomJWTAuthService(this IServiceCollection service)
     {
         service.AddSingleton<ITokenCreater, JWTTokenSource>();
-        service.AddSingleton<IAuthorisationTokenChecker, JWTTokenWorker>();
+        service.AddSingleton<IAuthorisationTokenWorker, JWTTokenWorker>();
         service.AddSingleton<IAuthService, AuthService>();
+        service.AddSingleton<IAuntificator, AuthDataChecker>();
+
         service
         .AddAuthentication(ex =>
         {

@@ -1,49 +1,49 @@
-using ISTUTimeTable.Src.Core.Domain.Entitys;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DataAcsesLayer.Entitys;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ISTUTimeTable.Src.Infrastruction.Persistense.DataAcsesLayer.Configuration;
+namespace DataAcsesLayer.Configuration;
 
-public class UnpassingsConfiguration : IEntityTypeConfiguration<Unpassing>
+public class UnpassingsConfiguration : IEntityTypeConfiguration<Unpassings>
 {
-    public void Configure(EntityTypeBuilder<Unpassing> builder)
+    public void Configure(EntityTypeBuilder<Unpassings> builder)
     {
-        
-        builder.
-        ToTable("Unpassings");
-
         builder
         .HasKey(ex => ex.Id);
 
         builder
-        .Property(ex => ex.InformingDate)
-        .HasColumnType("date")
-        .HasColumnName("InformingDate");
+        .Property(ex => ex.Id)
+        .HasColumnType("int4")
+        .ValueGeneratedOnAdd();
 
         builder
-        .HasOne<User>(ex => ex.Student)
+        .Property(ex => ex.DateOfInforming)
+        .HasColumnType("date");
+
+        builder
+        .HasOne(ex => ex.Student)
         .WithMany(ex => ex.Unpassings)
+        .HasPrincipalKey(ex => ex.Id)
         .HasForeignKey(ex => ex.StudentId)
-        .HasPrincipalKey(ex => ex.Id);
+        .OnDelete(DeleteBehavior.Cascade);
 
         builder
-        .HasOne<Lesson>(ex => ex.lesson)
+        .HasOne(ex => ex.lessonNum)
         .WithMany(ex => ex.Unpassings)
-        .HasForeignKey(ex => ex.LessonId)
-        .HasPrincipalKey(ex => ex.id);
+        .HasPrincipalKey(ex => ex.Id)
+        .HasForeignKey(ex => ex.LessonNumId)
+        .OnDelete(DeleteBehavior.Cascade);
 
         builder
-        .Property(ex => ex.Reason.Reason)
-        .HasColumnName("ReasonTitle");
-
-        builder
-        .Property(ex => ex.Reason.HaveAvaliableDocument)
-        .HasColumnName("HaveAvaliableDocument");
-
-
-        builder
-        .Property(ex => ex.Reason.IsAvaliableReason)
-        .HasColumnName("ReasonIsAvaliable");
+        .HasOne(ex => ex.Status)
+        .WithMany(ex => ex.Unpassings)
+        .HasPrincipalKey(ex => ex.Id)
+        .HasForeignKey(ex => ex.StatusId)
+        .OnDelete(DeleteBehavior.SetNull);
 
     }
 }

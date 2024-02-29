@@ -7,20 +7,22 @@ using ApiTests.Helpfull;
 using Microsoft.AspNetCore.TestHost;
 using ISTUTimeTable.Src.View.API;
 using ISTUTimeTable.Src.Core.Domain.Entitys;
+using GraphQl.Responses;
 
 namespace ISTUTimeTable.Tests.IntegrationApiTests;
 
 
 public class IntegrationApiAuthTestsWithFakeDataSource
 {
-    private GraphQLHttpClient _sutClientWithSucsessAuth {get; init; }
-    private GraphQLHttpClient _sutClientWithFailAuth {get; init; }
+    private readonly GraphQLHttpClient _sutClientWithSucsessAuth;
+    private readonly GraphQLHttpClient _sutClientWithFailAuth;
 
     public IntegrationApiAuthTestsWithFakeDataSource()
     {
         var httpClientWithSucsessAuthService = new WebApplicationFactory<Program>().WithWebHostBuilder(
             ex => ex.ConfigureServices(
-                ex => {
+                ex =>
+                {
                     ex.AddAuthentication(ex => ex.DefaultScheme = TestAuthOption.Name)
                     .AddScheme<TestAuthOption, TestUserAuthHandler>(TestAuthOption.Name, option => new TestAuthOption());
                 }
@@ -45,7 +47,9 @@ public class IntegrationApiAuthTestsWithFakeDataSource
 
 
         _sutClientWithFailAuth = new GraphQLHttpClient(
-            new GraphQLHttpClientOptions() { EndPoint = new Uri(httpClientWithFailAuthService.BaseAddress.ToString() + ":" + httpClientWithFailAuthService.BaseAddress.Port + "/api/mainData", UriKind.Absolute) },
+            new GraphQLHttpClientOptions() {
+                EndPoint = new Uri(httpClientWithFailAuthService.BaseAddress.ToString() + ":" + httpClientWithFailAuthService.BaseAddress.Port + "/api/mainData", UriKind.Absolute)
+            },
             new NewtonsoftJsonSerializer(),
             httpClientWithFailAuthService
         );
@@ -114,19 +118,18 @@ public class IntegrationApiAuthTestsWithFakeDataSource
     public async Task CanGetAuthBearer()
     {
         var query = new GraphQLHttpRequest(
-            @"mutation Test
-            {
-                GenerateToken
-                (
-                    login : '123',
-                    password : '123'
-                )
-                {
-                    authToken
-                    refreshToken
-                }
-            }");
-            _sutClientWithFailAuth
+            "mutation Test{GenerateToken(authData: { login: \"123\", password: \"123\" }){statusCode info}}"
+            );
+        var result = await _sutClientWithFailAuth.SendMutationAsync<DefaultActionResponse>(query);
+
+        var httpResponse = result.AsGraphQLHttpResponse();
+
+        Assert.True(
+            httpResponse.StatusCode == System.Net.HttpStatusCode.OK
+            &&
+            String.IsNullOrWhiteSpace(httpResponse.ResponseHeaders.Where(ex => ex.Key == "Token").First().Value.First()) == false
+            );
+
     }
 
 }
